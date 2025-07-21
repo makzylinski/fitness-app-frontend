@@ -14,6 +14,14 @@ export const routes: Routes = [
       ),
     title: 'Login - Fitness App',
   },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./components/signup/signup.component').then(
+        (c) => c.SignupComponent
+      ),
+    title: 'Sign Up - Fitness App',
+  },
   // TODO: Add more routes as components are created
   // {
   //   path: 'dashboard',

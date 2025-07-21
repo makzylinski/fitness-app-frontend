@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,10 @@ import {
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private navigationService: NavigationService
+  ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -40,6 +44,10 @@ export class LoginComponent {
       const control = this.loginForm.get(key);
       control?.markAsTouched();
     });
+  }
+
+  redirectToSignUp(): void {
+    this.navigationService.navigateToSignUp();
   }
 
   get email() {
