@@ -1,9 +1,52 @@
 <div class="login">
   <div class="login__form">
     <div class="login__header font-bold">Welcome to Fitness App</div>
-    <input type="text" placeholder="Email" class="login__input" />
-    <input type="password" placeholder="Password" class="login__input" />
-    <button class="login__button font-bold">Log In</button>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <input
+          type="email"
+          placeholder="Email"
+          class="login__input"
+          formControlName="email"
+          [class.error]="email?.invalid && email?.touched"
+        />
+        <div class="error-message" *ngIf="email?.invalid && email?.touched">
+          <span *ngIf="email?.errors?.['required']">Email is required</span>
+          <span *ngIf="email?.errors?.['email']"
+            >Please enter a valid email</span
+          >
+        </div>
+      </div>
+
+      <div class="form-field">
+        <input
+          type="password"
+          placeholder="Password"
+          class="login__input"
+          formControlName="password"
+          [class.error]="password?.invalid && password?.touched"
+        />
+        <div
+          class="error-message"
+          *ngIf="password?.invalid && password?.touched"
+        >
+          <span *ngIf="password?.errors?.['required']"
+            >Password is required</span
+          >
+          <span *ngIf="password?.errors?.['minlength']"
+            >Password must be at least 6 characters</span
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="login__button font-bold"
+        [disabled]="loginForm.invalid"
+      >
+        Log In
+      </button>
+    </form>
     <div class="login__footer">Don't have an account? Sign up</div>
   </div>
 </div>
