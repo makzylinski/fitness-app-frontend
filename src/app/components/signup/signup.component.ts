@@ -1,18 +1,65 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupComponent {
-  constructor(private navigationService: NavigationService) {}
+  signupForm: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private navigationService: NavigationService,
+    private authService: AuthService
+  ) {
+    this.signupForm = this.formBuilder.group({
+      fullName: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
+    });
+  }
 
   goBack(): void {
     this.navigationService.navigateToLogin();
+  }
+
+  onSubmit(): void {
+    if (this.signupForm.valid) {
+      const formData = this.signupForm.value;
+      console.log('Signup form data:', formData);
+      this.authService
+        .register(formData.email, formData.password, formData.fullName)
+        .subscribe();
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
+  get fullName() {
+    return this.signupForm.get('fullName');
+  }
+
+  get email() {
+    return this.signupForm.get('email');
+  }
+
+  get password() {
+    return this.signupForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.signupForm.get('confirmPassword');
   }
 }
