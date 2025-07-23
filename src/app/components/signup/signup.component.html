@@ -7,7 +7,7 @@
         <input
           type="text"
           placeholder="Full Name"
-          class="login__input"
+          class="signup__input"
           formControlName="fullName"
           [class.error]="fullName?.invalid && fullName?.touched"
         />
@@ -26,7 +26,7 @@
         <input
           type="email"
           placeholder="Email"
-          class="login__input"
+          class="signup__input"
           formControlName="email"
           [class.error]="email?.invalid && email?.touched"
         />
@@ -45,7 +45,7 @@
         <input
           type="password"
           placeholder="Password"
-          class="login__input"
+          class="signup__input"
           formControlName="password"
           [class.error]="password?.invalid && password?.touched"
         />
@@ -64,7 +64,7 @@
         <input
           type="password"
           placeholder="Confirm Password"
-          class="login__input"
+          class="signup__input"
           formControlName="confirmPassword"
           [class.error]="confirmPassword?.invalid && confirmPassword?.touched"
         />
@@ -81,7 +81,7 @@
 
       <button
         type="submit"
-        class="login__button font-bold"
+        class="signup__button font-bold"
         [disabled]="signupForm.invalid"
       >
         Sign Up
