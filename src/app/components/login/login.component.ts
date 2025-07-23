@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { NavigationService } from '../../services/navigation.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private authService: AuthService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -32,7 +34,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       console.log('Login form data:', formData);
-      // TODO: Implement login logic
+      this.authService.login(formData.email, formData.password).subscribe();
     } else {
       console.log('Form is invalid');
       this.markFormGroupTouched();
