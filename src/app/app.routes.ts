@@ -23,11 +23,14 @@ export const routes: Routes = [
     title: 'Sign Up - Fitness App',
   },
   // TODO: Add more routes as components are created
-  // {
-  //   path: 'dashboard',
-  //   loadComponent: () => import('./components/dashboard/dashboard.component').then(c => c.DashboardComponent),
-  //   title: 'Dashboard - Fitness App'
-  // },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./components/dashboard/dashboard.component').then(
+        (c) => c.DashboardComponent
+      ),
+    title: 'Dashboard - Fitness App',
+  },
   {
     path: '**',
     redirectTo: '/login',
