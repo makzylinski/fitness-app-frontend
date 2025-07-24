@@ -14,4 +14,8 @@ export class NavigationService {
   navigateToSignUp(): Promise<boolean> {
     return this.router.navigate(['/signup']);
   }
+
+  navigateToDashboard(): Promise<boolean> {
+    return this.router.navigate(['/dashboard']);
+  }
 }

@@ -11,15 +11,6 @@
           formControlName="fullName"
           [class.error]="fullName?.invalid && fullName?.touched"
         />
-        @if (fullName?.invalid && fullName?.touched) {
-        <div class="error-message">
-          @if (fullName?.errors?.['required']) {
-          <span>Name is required</span>
-          } @if(fullName?.errors?.['fullName']) {
-          <span>Please enter a valid Name</span>
-          }
-        </div>
-        }
       </div>
 
       <div class="form-field">
@@ -30,15 +21,6 @@
           formControlName="email"
           [class.error]="email?.invalid && email?.touched"
         />
-        @if (email?.invalid && email?.touched) {
-        <div class="error-message">
-          @if (email?.errors?.['required']) {
-          <span>Email is required</span>
-          } @if(email?.errors?.['email']) {
-          <span>Please enter a valid email</span>
-          }
-        </div>
-        }
       </div>
 
       <div class="form-field">
@@ -49,15 +31,6 @@
           formControlName="password"
           [class.error]="password?.invalid && password?.touched"
         />
-        @if (password?.invalid && password?.touched) {
-        <div class="error-message">
-          @if (password?.errors?.['required']) {
-          <span>Password is required</span>
-          } @if(password?.errors?.['minlength']) {
-          <span>Password must be at least 6 characters</span>
-          }
-        </div>
-        }
       </div>
 
       <div class="form-field">
@@ -68,15 +41,6 @@
           formControlName="confirmPassword"
           [class.error]="confirmPassword?.invalid && confirmPassword?.touched"
         />
-        @if (confirmPassword?.invalid && confirmPassword?.touched) {
-        <div class="error-message">
-          @if (confirmPassword?.errors?.['required']) {
-          <span>Confirm Password is required</span>
-          } @if(confirmPassword?.errors?.['mismatch']) {
-          <span>Passwords do not match</span>
-          }
-        </div>
-        }
       </div>
 
       <button

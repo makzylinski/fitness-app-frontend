@@ -34,11 +34,24 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       console.log('Login form data:', formData);
-      this.authService.login(formData.email, formData.password).subscribe();
+      this.authService.login(formData.email, formData.password).subscribe(
+        () => {
+          this.navigationService.navigateToDashboard();
+        },
+        (error: any) => {
+          console.error('Login error:', error);
+          alert(error.error.message);
+          this.clearForm();
+        }
+      );
     } else {
       console.log('Form is invalid');
       this.markFormGroupTouched();
     }
+  }
+
+  private clearForm(): void {
+    this.loginForm.reset();
   }
 
   private markFormGroupTouched(): void {
