@@ -2,6 +2,90 @@
   <button (click)="goBack()" class="back-button">← Back to Login</button>
   <div class="signup__form">
     <div class="signup__header font-bold">Create Account</div>
-    <p>Sign up form coming soon...</p>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <input
+          type="text"
+          placeholder="Full Name"
+          class="signup__input"
+          formControlName="fullName"
+          [class.error]="fullName?.invalid && fullName?.touched"
+        />
+        @if (fullName?.invalid && fullName?.touched) {
+        <div class="error-message">
+          @if (fullName?.errors?.['required']) {
+          <span>Name is required</span>
+          } @if(fullName?.errors?.['fullName']) {
+          <span>Please enter a valid Name</span>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-field">
+        <input
+          type="email"
+          placeholder="Email"
+          class="signup__input"
+          formControlName="email"
+          [class.error]="email?.invalid && email?.touched"
+        />
+        @if (email?.invalid && email?.touched) {
+        <div class="error-message">
+          @if (email?.errors?.['required']) {
+          <span>Email is required</span>
+          } @if(email?.errors?.['email']) {
+          <span>Please enter a valid email</span>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-field">
+        <input
+          type="password"
+          placeholder="Password"
+          class="signup__input"
+          formControlName="password"
+          [class.error]="password?.invalid && password?.touched"
+        />
+        @if (password?.invalid && password?.touched) {
+        <div class="error-message">
+          @if (password?.errors?.['required']) {
+          <span>Password is required</span>
+          } @if(password?.errors?.['minlength']) {
+          <span>Password must be at least 6 characters</span>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form-field">
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          class="signup__input"
+          formControlName="confirmPassword"
+          [class.error]="confirmPassword?.invalid && confirmPassword?.touched"
+        />
+        @if (confirmPassword?.invalid && confirmPassword?.touched) {
+        <div class="error-message">
+          @if (confirmPassword?.errors?.['required']) {
+          <span>Confirm Password is required</span>
+          } @if(confirmPassword?.errors?.['mismatch']) {
+          <span>Passwords do not match</span>
+          }
+        </div>
+        }
+      </div>
+
+      <button
+        type="submit"
+        class="signup__button font-bold"
+        [disabled]="signupForm.invalid"
+      >
+        Sign Up
+      </button>
+    </form>
   </div>
 </div>
