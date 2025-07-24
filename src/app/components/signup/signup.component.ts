@@ -41,10 +41,23 @@ export class SignupComponent {
       console.log('Signup form data:', formData);
       this.authService
         .register(formData.email, formData.password, formData.fullName)
-        .subscribe();
+        .subscribe(
+          () => {
+            this.navigationService.navigateToLogin();
+          },
+          (error) => {
+            console.error('Registration error:', error);
+            alert(error.error.message);
+            this.clearForm();
+          }
+        );
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  private clearForm(): void {
+    this.signupForm.reset();
   }
 
   get fullName() {
