@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,7 @@ export const routes: Routes = [
       import('./components/dashboard/dashboard.component').then(
         (c) => c.DashboardComponent
       ),
+    canActivate: [authGuard],
     title: 'Dashboard - Fitness App',
   },
   {
