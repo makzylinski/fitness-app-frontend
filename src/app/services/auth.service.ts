@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable, Subscription, take } from 'rxjs';
 import { env } from '../environments/env';
 
 @Injectable({
@@ -25,4 +25,17 @@ export class AuthService {
   }
 
   logout(): void {}
+
+  isAuthenticated(): Subscription {
+    return this.http
+      .get(`${this.authUrl}/me`)
+      .pipe(
+        map((response: any) => {
+          console.log('Authentication check response:', response);
+          return response && response.isAuthenticated;
+        }),
+        take(1)
+      )
+      .subscribe();
+  }
 }
