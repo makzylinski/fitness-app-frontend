@@ -1,0 +1,25 @@
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+
+  border-bottom: 1px solid #e6e8eb;
+
+  &__links {
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    margin-right: 40px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        color: #007bff;
+      }
+    }
+  }
+}
