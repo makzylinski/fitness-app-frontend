@@ -1,0 +1,11 @@
+.dashboard {
+  width: 80%;
+  margin: 0 auto;
+
+  &__header {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0d1c1a;
+    margin: 20px 0;
+  }
+}
