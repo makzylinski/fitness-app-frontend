@@ -24,7 +24,11 @@ export class AuthService {
     });
   }
 
-  logout(): void {}
+  logout(): Subscription {
+    return this.http.post(`${this.authUrl}/logout`, {}).subscribe(() => {
+      this.router.navigate(['/login']);
+    });
+  }
 
   isAuthenticated(): Subscription {
     return this.http
