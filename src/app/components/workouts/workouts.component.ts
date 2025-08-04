@@ -21,6 +21,8 @@ export class WorkoutsComponent {
   constructor(private formBuilder: FormBuilder) {
     this.workoutForm = this.formBuilder.group({
       name: ['', [Validators.required]],
+      date: ['', Validators.required],
+      notes: [''],
     });
   }
 
@@ -30,5 +32,13 @@ export class WorkoutsComponent {
 
   get name() {
     return this.workoutForm.get('name');
+  }
+
+  get date() {
+    return this.workoutForm.get('date');
+  }
+
+  get notes() {
+    return this.workoutForm.get('notes');
   }
 }
