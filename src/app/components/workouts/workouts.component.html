@@ -1,1 +1,24 @@
-<p>workouts works!</p>
+<div class="workout">
+  <div class="workout__header">Log Workout</div>
+  <div class="workout__subheader">Record your strength training session</div>
+
+  <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <input
+        type="name"
+        placeholder="e.g., Upper Body Strength"
+        class="workout__input"
+        formControlName="name"
+        [class.error]="name?.invalid && name?.touched"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="workout__button font-bold"
+      [disabled]="workoutForm.invalid"
+    >
+      Log In
+    </button>
+  </form>
+</div>
