@@ -27,7 +27,7 @@ export class WorkoutsComponent {
   }
 
   onSubmit(): void {
-    console.log('Submit');
+    console.log(this.workoutForm);
   }
 
   get name() {
