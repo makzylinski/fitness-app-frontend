@@ -3,8 +3,8 @@
     <img src="assets/img/logo.svg" alt="Fitness App Logo" />FitnessApp
   </div>
   <div class="toolbar__links">
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/workouts">Workouts</a>
+    <a (click)="onDashboardClick()">Dashboard</a>
+    <a (click)="onWorkoutsClick()">Workouts</a>
     <div (click)="onLogout()">Logout</div>
   </div>
 </div>

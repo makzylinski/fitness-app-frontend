@@ -18,4 +18,8 @@ export class NavigationService {
   navigateToDashboard(): Promise<boolean> {
     return this.router.navigate(['/dashboard']);
   }
+
+  navigateToWorkouts(): Promise<boolean> {
+    return this.router.navigate(['/workouts']);
+  }
 }
