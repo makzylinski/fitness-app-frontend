@@ -4,7 +4,9 @@
 
   <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
+      <label class="workout__label" for="name">Workout Name</label>
       <input
+        id="name"
         type="name"
         placeholder="e.g., Upper Body Strength"
         class="workout__input"
