@@ -34,6 +34,15 @@ export const routes: Routes = [
     title: 'Dashboard - Fitness App',
   },
   {
+    path: 'workouts',
+    loadComponent: () =>
+      import('./components/workouts/workouts.component').then(
+        (c) => c.WorkoutsComponent
+      ),
+    canActivate: [authGuard],
+    title: 'Dashboard - Fitness App',
+  },
+  {
     path: '**',
     redirectTo: '/login',
   },
