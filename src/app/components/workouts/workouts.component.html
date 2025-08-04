@@ -2,13 +2,25 @@
   <div class="workout__header">Log Workout</div>
   <div class="workout__subheader">Record your strength training session</div>
 
-  <form [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
+  <form class="workout__form" [formGroup]="workoutForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
       <label class="workout__label" for="name">Workout Name</label>
       <input
         id="name"
         type="name"
         placeholder="e.g., Upper Body Strength"
+        class="workout__input"
+        formControlName="name"
+        [class.error]="name?.invalid && name?.touched"
+      />
+    </div>
+
+    <div class="form-field">
+      <label class="workout__label" for="date">Date</label>
+      <input
+        id="date"
+        type="date"
+        placeholder="Date"
         class="workout__input"
         formControlName="name"
         [class.error]="name?.invalid && name?.touched"
