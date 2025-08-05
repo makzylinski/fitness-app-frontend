@@ -1,1 +1,7 @@
-<p>exercises works!</p>
+<div class="exercise">
+  @for (item of exercises; track $index) {
+  <div class="exercise__item">
+    {{ item.name }} - {{ item.sets }} - {{ item.reps }}
+  </div>
+  }
+</div>

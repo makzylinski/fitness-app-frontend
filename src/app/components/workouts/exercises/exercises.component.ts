@@ -6,8 +6,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [],
   templateUrl: './exercises.component.html',
   styleUrl: './exercises.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExercisesComponent {
-
+  exercises = [
+    {
+      id: 1,
+      name: 'Bench Press',
+      sets: 3,
+      reps: 12,
+    },
+  ];
 }
