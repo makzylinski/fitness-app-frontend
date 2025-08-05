@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { WorkoutsService } from '../../services/workouts.service';
 
 @Component({
   selector: 'app-workouts',
@@ -18,7 +19,10 @@ import {
 export class WorkoutsComponent {
   workoutForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private workoutsService: WorkoutsService
+  ) {
     this.workoutForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       date: ['', Validators.required],
@@ -28,6 +32,7 @@ export class WorkoutsComponent {
 
   onSubmit(): void {
     console.log(this.workoutForm);
+    // this.workoutsService.saveExercise(this.workoutForm)
   }
 
   get name() {
