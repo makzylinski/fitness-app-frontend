@@ -1,7 +1,23 @@
 <div class="exercise">
+  <div class="exercise__header">Exercises</div>
   @for (item of exercises; track $index) {
   <div class="exercise__item">
-    {{ item.name }} - {{ item.sets }} - {{ item.reps }}
+    <div class="exercise__item-icon">
+      <img
+        src="assets/icons/weight-lifting-icon.svg"
+        alt="Weight Lifting Icon"
+      />
+    </div>
+    <div class="exercise__item-name">{{ item.name }}</div>
+    ·
+    <div class="exercise__item-sets">{{ item.sets }}</div>
+    ·
+    <div class="exercise__item-reps">{{ item.reps }}</div>
+    ·
+    <div class="exercise__item-max-weight">{{ item.weight }}</div>
+    <div class="exercise__item-edit">
+      <img src="assets/icons/pen-edit.svg" alt="Edit Icon" />
+    </div>
   </div>
   }
 </div>

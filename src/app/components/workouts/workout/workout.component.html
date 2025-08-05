@@ -1,52 +1,56 @@
-<div class="workout-form__header">Log Workout</div>
-<div class="workout-form__subheader">Record your strength training session</div>
-
-<form
-  class="workout-form__form"
-  [formGroup]="workoutForm"
-  (ngSubmit)="onSubmit()"
->
-  <div class="form-field">
-    <label class="workout-form__label" for="name">Workout Name</label>
-    <input
-      id="name"
-      type="name"
-      placeholder="e.g., Upper Body Strength"
-      class="workout-form__input"
-      formControlName="name"
-      [class.error]="name?.invalid && name?.touched"
-    />
+<div class="workout-form">
+  <div class="workout-form__header">Log Workout</div>
+  <div class="workout-form__subheader">
+    Record your strength training session
   </div>
 
-  <div class="form-field">
-    <label class="workout-form__label" for="date">Date</label>
-    <input
-      id="date"
-      type="date"
-      placeholder="Date"
-      class="workout-form__input"
-      formControlName="date"
-      [class.error]="date?.invalid && date?.touched"
-    />
-  </div>
-
-  <div class="form-field">
-    <label class="workout-form__label" for="notes">Notes</label>
-    <textarea
-      name="notes"
-      id="notes"
-      placeholder="How was your training?"
-      class="workout-form__input"
-      formControlName="notes"
-      [class.error]="notes?.invalid && notes?.touched"
-    ></textarea>
-  </div>
-
-  <button
-    type="submit"
-    class="workout-form__button"
-    [disabled]="workoutForm.invalid"
+  <form
+    class="workout-form__form"
+    [formGroup]="workoutForm"
+    (ngSubmit)="onSubmit()"
   >
-    Add Exercise
-  </button>
-</form>
+    <div class="form-field">
+      <label class="workout-form__label" for="name">Workout Name</label>
+      <input
+        id="name"
+        type="name"
+        placeholder="e.g., Upper Body Strength"
+        class="workout-form__input"
+        formControlName="name"
+        [class.error]="name?.invalid && name?.touched"
+      />
+    </div>
+
+    <div class="form-field">
+      <label class="workout-form__label" for="date">Date</label>
+      <input
+        id="date"
+        type="date"
+        placeholder="Date"
+        class="workout-form__input"
+        formControlName="date"
+        [class.error]="date?.invalid && date?.touched"
+      />
+    </div>
+
+    <div class="form-field">
+      <label class="workout-form__label" for="notes">Notes</label>
+      <textarea
+        name="notes"
+        id="notes"
+        placeholder="How was your training?"
+        class="workout-form__input"
+        formControlName="notes"
+        [class.error]="notes?.invalid && notes?.touched"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="workout-form__button"
+      [disabled]="workoutForm.invalid"
+    >
+      Add Exercise
+    </button>
+  </form>
+</div>
