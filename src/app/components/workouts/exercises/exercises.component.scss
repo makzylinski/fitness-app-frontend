@@ -12,10 +12,22 @@
     justify-content: baseline;
     font-size: 16px;
     gap: 10px;
+    width: 400px;
 
     &-icon {
       margin-right: 10px;
       height: 40px;
+    }
+
+    &-edit {
+      margin-right: 0;
+      margin-left: auto;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+        transition: all 0.2s ease-in-out;
+      }
     }
   }
 }
