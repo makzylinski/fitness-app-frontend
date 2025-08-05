@@ -1,0 +1,43 @@
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    color: #0d1c1a;
+    font-size: 16px;
+  }
+
+  select {
+    color: #4f968f;
+    background-color: #e8f2f2;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: #0d1c1a;
+      box-shadow: 0 0 0 2px rgba(13, 28, 26, 0.1);
+    }
+
+    &:hover {
+      border-color: #0d1c1a;
+      transform: scale(1.02);
+    }
+
+    &:disabled {
+      background-color: #f9fafb;
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    option {
+      color: #0d1c1a;
+      padding: 0.5rem;
+    }
+  }
+}
