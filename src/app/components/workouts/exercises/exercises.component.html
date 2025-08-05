@@ -2,7 +2,12 @@
   <div class="exercise__header">Exercises</div>
   @for (item of exercises; track $index) {
   <div class="exercise__item">
-    <div class="exercise__item-icon"></div>
+    <div class="exercise__item-icon">
+      <img
+        src="assets/icons/weight-lifting-icon.svg"
+        alt="Weight Lifting Icon"
+      />
+    </div>
     <div class="exercise__item-name">{{ item.name }}</div>
     ·
     <div class="exercise__item-sets">{{ item.sets }}</div>

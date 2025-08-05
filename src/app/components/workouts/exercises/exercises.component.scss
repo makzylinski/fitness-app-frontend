@@ -8,5 +8,12 @@
 
   &__item {
     display: flex;
+    align-items: center;
+    justify-content: baseline;
+
+    &-icon {
+      margin-right: 10px;
+      height: 40px;
+    }
   }
 }
