@@ -1,1 +1,11 @@
-<p>select works!</p>
+<div class="select">
+  @if(showLabel) {
+  <label [for]="id">{{ label }}</label>
+  }
+
+  <select [name]="name" [id]="id">
+    @for (option of options; track $index) {
+    <option [value]="option">{{ option }}</option>
+    }
+  </select>
+</div>
