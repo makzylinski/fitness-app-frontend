@@ -1,7 +1,12 @@
 .exercise {
   color: #0d1c1a;
+
   &__header {
     font-weight: 700;
     font-size: 28px;
+  }
+
+  &__item {
+    display: flex;
   }
 }

@@ -15,6 +15,7 @@ export class ExercisesComponent {
       name: 'Bench Press',
       sets: 3,
       reps: 12,
+      weight: '50kg',
     },
   ];
 }
