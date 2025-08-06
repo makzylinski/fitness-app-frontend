@@ -11,6 +11,9 @@
   </div>
   @if (isDropdownOpen) {
   <div class="select__options">
+    <div class="select__options-search">
+      <img src="assets/icons/search.svg" alt="arrow_down" />
+    </div>
     @for (option of options; track $index) {
     <div class="select__options--single">{{ option }}</div>
     }
