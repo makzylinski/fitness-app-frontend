@@ -14,4 +14,10 @@ export class SelectComponent {
   @Input() options: string[] = [];
   @Input() id: string = '';
   @Input() name: string = '';
+
+  isDropdownOpen: boolean = false;
+
+  toggleOpen(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }

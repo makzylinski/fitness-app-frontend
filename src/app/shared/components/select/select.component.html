@@ -3,9 +3,17 @@
   <label [for]="id">{{ label }}</label>
   }
 
-  <select [name]="name" [id]="id">
+  <div class="select__dropdown" (click)="toggleOpen()">
+    <div class="select__dropdown--selected">
+      {{ options[0] }}
+    </div>
+    <img src="assets/icons/Arrow-down.svg" alt="arrow_down" />
+  </div>
+  @if (isDropdownOpen) {
+  <div class="select__options">
     @for (option of options; track $index) {
-    <option [value]="option">{{ option }}</option>
+    <div>{{ option }}</div>
     }
-  </select>
+  </div>
+  }
 </div>
