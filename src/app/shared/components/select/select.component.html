@@ -7,7 +7,11 @@
     <div class="select__dropdown--selected">
       {{ options[0] }}
     </div>
-    <img src="assets/icons/Arrow-down.svg" alt="arrow_down" />
+    <img
+      src="assets/icons/Arrow-down.svg"
+      alt="arrow_down"
+      [class.rotated]="isDropdownOpen"
+    />
   </div>
   @if (isDropdownOpen) {
   <div class="select__options">
