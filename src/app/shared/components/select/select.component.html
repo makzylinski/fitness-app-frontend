@@ -1,6 +1,6 @@
 <div class="select">
   @if(showLabel) {
-  <label [for]="id">{{ label }}</label>
+  <label [for]="id()">{{ label() }}</label>
   }
 
   <div class="select__dropdown" (click)="toggleOpen()">
@@ -19,7 +19,7 @@
       <img src="assets/icons/search.svg" alt="arrow_down" />
       <input type="text" />
     </div>
-    @for (option of options; track $index) {
+    @for (option of options(); track $index) {
     <div class="select__options--single" (click)="setSelectedOption(option)">
       {{ option }}
     </div>

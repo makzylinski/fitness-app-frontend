@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Input,
+  input,
 } from '@angular/core';
 
 @Component({
@@ -15,11 +15,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent {
-  @Input() showLabel?: boolean = false;
-  @Input() label: string = '';
-  @Input() options: string[] = [];
-  @Input() id: string = '';
-  @Input() name: string = '';
+  showLabel? = input<boolean>();
+  label = input<string>();
+  options = input<string[]>();
+  id = input<string>();
+  name = input<string>();
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
