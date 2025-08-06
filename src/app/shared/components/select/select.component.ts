@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-select',
@@ -14,6 +20,15 @@ export class SelectComponent {
   @Input() options: string[] = [];
   @Input() id: string = '';
   @Input() name: string = '';
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+  constructor(private elementRef: ElementRef) {}
 
   selectedOption: any;
   isDropdownOpen: boolean = false;
