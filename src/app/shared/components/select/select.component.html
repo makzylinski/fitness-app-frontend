@@ -12,7 +12,7 @@
   @if (isDropdownOpen) {
   <div class="select__options">
     @for (option of options; track $index) {
-    <div>{{ option }}</div>
+    <div class="select__options--single">{{ option }}</div>
     }
   </div>
   }
