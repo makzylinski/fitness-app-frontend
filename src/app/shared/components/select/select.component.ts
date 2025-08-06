@@ -15,9 +15,13 @@ export class SelectComponent {
   @Input() id: string = '';
   @Input() name: string = '';
 
+  selectedOption: any;
   isDropdownOpen: boolean = false;
 
-  toggleOpen(): void {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
+  toggleOpen = (): boolean => (this.isDropdownOpen = !this.isDropdownOpen);
+
+  setSelectedOption = (option: any): void => {
+    this.selectedOption = option;
+    this.isDropdownOpen = false;
+  };
 }

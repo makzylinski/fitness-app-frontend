@@ -5,7 +5,7 @@
 
   <div class="select__dropdown" (click)="toggleOpen()">
     <div class="select__dropdown--selected">
-      {{ options[0] }}
+      {{ selectedOption }}
     </div>
     <img
       src="assets/icons/Arrow-down.svg"
@@ -20,7 +20,9 @@
       <input type="text" />
     </div>
     @for (option of options; track $index) {
-    <div class="select__options--single">{{ option }}</div>
+    <div class="select__options--single" (click)="setSelectedOption(option)">
+      {{ option }}
+    </div>
     }
   </div>
   }
