@@ -1,25 +1,27 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
-  input,
+  Input,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-select',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent {
-  showLabel? = input<boolean>();
-  label = input<string>();
-  options = input<string[]>();
-  id = input<string>();
-  name = input<string>();
+  @Input() showLabel?: boolean = false;
+  @Input() label: string = '';
+  @Input() options: string[] = [];
+  @Input() id: string = '';
+  @Input() name: string = '';
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
@@ -28,15 +30,23 @@ export class SelectComponent {
     }
   }
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
   selectedOption: any;
   isDropdownOpen: boolean = false;
+  serachValue: string = '';
 
   toggleOpen = (): boolean => (this.isDropdownOpen = !this.isDropdownOpen);
 
   setSelectedOption = (option: any): void => {
     this.selectedOption = option;
     this.isDropdownOpen = false;
+  };
+
+  onSearch = (search: any): void => {
+    this.options = (this.options ?? []).filter((el) =>
+      el.toLowerCase().includes(search.target.value.toLowerCase())
+    );
+    this.cdr.markForCheck();
   };
 }
