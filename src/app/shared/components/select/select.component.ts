@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,11 +9,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-select',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 export class SelectComponent implements OnInit {
   @Input() showLabel?: boolean = false;
   @Input() label: string = '';
-  @Input() options: string[] = [];
+  @Input() options: Observable<any> = of(null);
   @Input() id: string = '';
   @Input() name: string = '';
 
@@ -36,10 +38,14 @@ export class SelectComponent implements OnInit {
   selectedOption: any;
   isDropdownOpen: boolean = false;
   serachValue: string = '';
-  filteredOptions: any[] = [];
+  filteredOptions = new BehaviorSubject<any[]>([]);
+  private allOptions: any[] = [];
 
   ngOnInit(): void {
-    this.filteredOptions = this.options;
+    this.options.subscribe((data) => {
+      this.allOptions = data || [];
+      this.filteredOptions.next(this.allOptions);
+    });
   }
 
   toggleOpen = (): boolean => (this.isDropdownOpen = !this.isDropdownOpen);
@@ -50,9 +56,16 @@ export class SelectComponent implements OnInit {
   };
 
   onSearch = (search: any): void => {
-    this.filteredOptions = (this.options ?? []).filter((el) =>
-      el.toLowerCase().includes(search.target.value.toLowerCase())
-    );
+    const searchValue = search.target.value.toLowerCase();
+    if (!searchValue) {
+      this.filteredOptions.next(this.allOptions);
+    } else {
+      const filtered = this.allOptions.filter((el) =>
+        el?.typeName?.toLowerCase().includes(searchValue)
+      );
+      this.filteredOptions.next(filtered);
+    }
+
     this.cdr.markForCheck();
   };
 }

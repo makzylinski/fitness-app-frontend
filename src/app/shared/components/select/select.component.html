@@ -5,7 +5,7 @@
 
   <div class="select__dropdown" (click)="toggleOpen()">
     <div class="select__dropdown--selected">
-      {{ selectedOption }}
+      {{ selectedOption?.typeName }}
     </div>
     <img
       src="assets/icons/Arrow-down.svg"
@@ -19,9 +19,9 @@
       <img src="assets/icons/search.svg" alt="arrow_down" />
       <input type="text" [(ngModel)]="serachValue" (input)="onSearch($event)" />
     </div>
-    @for (option of filteredOptions; track $index) {
+    @for (option of (filteredOptions | async); track $index) {
     <div class="select__options--single" (click)="setSelectedOption(option)">
-      {{ option }}
+      {{ option.typeName }}
     </div>
     }
   </div>
