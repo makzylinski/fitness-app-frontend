@@ -19,7 +19,7 @@
       <img src="assets/icons/search.svg" alt="arrow_down" />
       <input type="text" [(ngModel)]="serachValue" (input)="onSearch($event)" />
     </div>
-    @for (option of options; track $index) {
+    @for (option of filteredOptions; track $index) {
     <div class="select__options--single" (click)="setSelectedOption(option)">
       {{ option }}
     </div>

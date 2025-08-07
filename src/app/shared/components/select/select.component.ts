@@ -5,6 +5,7 @@ import {
   ElementRef,
   HostListener,
   Input,
+  OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -16,7 +17,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent {
+export class SelectComponent implements OnInit {
   @Input() showLabel?: boolean = false;
   @Input() label: string = '';
   @Input() options: string[] = [];
@@ -35,6 +36,11 @@ export class SelectComponent {
   selectedOption: any;
   isDropdownOpen: boolean = false;
   serachValue: string = '';
+  filteredOptions: any[] = [];
+
+  ngOnInit(): void {
+    this.filteredOptions = this.options;
+  }
 
   toggleOpen = (): boolean => (this.isDropdownOpen = !this.isDropdownOpen);
 
@@ -44,7 +50,7 @@ export class SelectComponent {
   };
 
   onSearch = (search: any): void => {
-    this.options = (this.options ?? []).filter((el) =>
+    this.filteredOptions = (this.options ?? []).filter((el) =>
       el.toLowerCase().includes(search.target.value.toLowerCase())
     );
     this.cdr.markForCheck();
