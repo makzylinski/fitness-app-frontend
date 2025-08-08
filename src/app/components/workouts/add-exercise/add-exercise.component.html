@@ -1,9 +1,15 @@
 <div class="add-exercise">
-  <app-select
-    [id]="'testId'"
-    [label]="'testLabel'"
-    [name]="'testName'"
-    [showLabel]="true"
-    [options]="options"
-  ></app-select>
+  <div class="add-exercise__header">Add Exercise</div>
+  <div class="add-exercise__form">
+    <form (ngSubmit)="onSubmit()">
+      <app-select
+        [id]="'Exercise-Name'"
+        [label]="'Exercise Name'"
+        [name]="'Exercise-Name'"
+        [showLabel]="true"
+        [options]="options"
+        formControlName="name"
+      ></app-select>
+    </form>
+  </div>
 </div>

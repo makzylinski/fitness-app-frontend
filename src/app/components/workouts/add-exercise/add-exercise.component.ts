@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { WorkoutsService } from '../../../services/workouts.service';
 import { SelectComponent } from '../../../shared/components/select/select.component';
@@ -12,12 +13,25 @@ import { SelectComponent } from '../../../shared/components/select/select.compon
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddExerciseComponent implements OnInit {
-  constructor(private workoutService: WorkoutsService) {}
+  addExerciseForm: FormGroup;
 
-  testOptions = ['opcja 1', 'opcja 2', 'opcja 3'];
+  constructor(
+    private workoutService: WorkoutsService,
+    private formBuilder: FormBuilder
+  ) {
+    this.addExerciseForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.email]],
+      sets: [],
+      reps: [],
+      weight: [],
+    });
+  }
+
   options: Observable<any> = of(null);
 
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();
   }
+
+  onSubmit = () => null;
 }
