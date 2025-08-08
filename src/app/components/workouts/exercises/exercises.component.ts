@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AddExerciseComponent } from '../add-exercise/add-exercise.component';
 
 @Component({
   selector: 'app-exercises',
   standalone: true,
-  imports: [AddExerciseComponent],
+  imports: [],
   templateUrl: './exercises.component.html',
   styleUrl: './exercises.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
