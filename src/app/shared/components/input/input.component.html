@@ -3,6 +3,14 @@
     [type]="type"
     [placeholder]="placeholder"
     [id]="id"
+    [value]="value"
+    [disabled]="disabled"
+    [class.error]="isInvalid"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
     class="input__element"
   />
+  <div class="error-message" *ngIf="isInvalid">
+    {{ errorMessage }}
+  </div>
 </div>
