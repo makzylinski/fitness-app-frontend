@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   forwardRef,
-  inject,
+  Injector,
+  Input,
+  OnInit,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -28,22 +29,28 @@ import {
     },
   ],
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() type: string = 'text';
   @Input() placeholder: string = 'Input value...';
   @Input() id: string = 'Empty';
 
   value: string = '';
   disabled: boolean = false;
-
-  private ngControl = inject(NgControl, { optional: true });
+  ngControl?: NgControl;
 
   private onChange = (value: string) => {};
   private onTouched = () => {};
 
+  constructor(private injector: Injector) {}
+
   ngOnInit() {
-    if (this.ngControl) {
-      this.ngControl.valueAccessor = this;
+    try {
+      this.ngControl = this.injector.get(NgControl, undefined);
+      if (this.ngControl) {
+        this.ngControl.valueAccessor = this;
+      }
+    } catch (error) {
+      // NgControl not available
     }
   }
 
