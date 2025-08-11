@@ -1,15 +1,38 @@
 <div class="add-exercise">
   <div class="add-exercise__header">Add Exercise</div>
-  <div class="add-exercise__form">
-    <form (ngSubmit)="onSubmit()">
-      <app-select
-        [id]="'Exercise-Name'"
-        [label]="'Exercise Name'"
-        [name]="'Exercise-Name'"
-        [showLabel]="true"
-        [options]="options"
-        formControlName="name"
-      ></app-select>
-    </form>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Sets</th>
+        <th>Reps</th>
+        <th>Weight (kg)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <app-select
+            [id]="'Exercise-Name'"
+            [label]="'Exercise Name'"
+            [name]="'Exercise-Name'"
+            [showLabel]="true"
+            [options]="options"
+            formControlName="name"
+          ></app-select>
+        </td>
+        <td>
+          <app-input
+            [width]="40"
+            [type]="'number'"
+            [placeholder]="''"
+          ></app-input>
+        </td>
+        <td>reps</td>
+        <td>weight</td>
+        <td>actions</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -32,6 +32,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() type: string = 'text';
   @Input() placeholder: string = 'Input value...';
   @Input() id: string = 'Empty';
+  @Input() width: number = 330;
 
   value: string = '';
   disabled: boolean = false;
