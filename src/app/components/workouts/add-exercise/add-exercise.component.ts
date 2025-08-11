@@ -16,6 +16,7 @@ export class AddExerciseComponent implements OnInit {
   constructor(private workoutService: WorkoutsService) {}
 
   options: Observable<any> = of(null);
+  sets: number[] = [];
 
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();

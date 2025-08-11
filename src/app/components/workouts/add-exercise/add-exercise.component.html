@@ -3,8 +3,8 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
         <th>Sets</th>
+        <th>Name</th>
         <th>Reps</th>
         <th>Weight (kg)</th>
         <th>Actions</th>
@@ -12,6 +12,7 @@
     </thead>
     <tbody>
       <tr>
+        <td>{{ sets.length + 1 }}.</td>
         <td>
           <app-select
             [id]="'Exercise-Name'"
@@ -21,13 +22,6 @@
             [options]="options"
             formControlName="name"
           ></app-select>
-        </td>
-        <td>
-          <app-input
-            [width]="40"
-            [type]="'number'"
-            [placeholder]="''"
-          ></app-input>
         </td>
         <td>
           <app-input
