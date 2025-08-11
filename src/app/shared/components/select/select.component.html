@@ -21,7 +21,8 @@
     </div>
     @for (option of (filteredOptions | async); track $index) {
     <div class="select__options--single" (click)="setSelectedOption(option)">
-      {{ option.typeName }}
+      <img [src]="'assets/icons/cardio.svg'" [alt]="option.typeName" />
+      <div>{{ option.typeName }}</div>
     </div>
     }
   </div>

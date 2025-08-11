@@ -61,6 +61,8 @@
 
     &--single {
       padding: 10px;
+      display: flex;
+      gap: 10px;
       &:hover {
         cursor: pointer;
         background-color: #d1e7e5;
