@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { TypeOfWorkout } from '../../model/type-of-workout';
 
 @Component({
   selector: 'app-select',
@@ -33,6 +34,8 @@ export class SelectComponent implements OnInit {
     }
   }
 
+  TypeOfWorkout = TypeOfWorkout;
+
   constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
   selectedOption: any;
@@ -44,6 +47,7 @@ export class SelectComponent implements OnInit {
   ngOnInit(): void {
     this.options.subscribe((data) => {
       this.allOptions = data || [];
+      console.log(data);
       this.filteredOptions.next(this.allOptions);
     });
   }
