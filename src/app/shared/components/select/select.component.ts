@@ -26,6 +26,7 @@ export class SelectComponent implements OnInit {
   @Input() options: Observable<any> = of(null);
   @Input() id: string = '';
   @Input() name: string = '';
+  @Input() width: number = 307;
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
