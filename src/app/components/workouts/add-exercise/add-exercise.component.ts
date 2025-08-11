@@ -22,5 +22,9 @@ export class AddExerciseComponent implements OnInit {
     this.options = this.workoutService.getWorkoutTypes();
   }
 
+  setReps = (inputData: string | number) => console.log(inputData);
+
+  setWeight = (inputData: string | number) => console.log(inputData);
+
   addSet = () => null;
 }
