@@ -8,11 +8,15 @@ import { env } from '../environments/env';
 })
 export class WorkoutsService {
   private readonly baseUrl = env.baseUrl;
-  private readonly authUrl = `${this.baseUrl}/api/workouts`;
+  private readonly workoutsUrl = `${this.baseUrl}/api/workouts`;
+  private readonly workoutTypes = `${this.baseUrl}/api/workout-types`;
 
   constructor(private http: HttpClient) {}
 
   saveExercise(exercise: any): Observable<any> {
-    return this.http.post(`${this.authUrl}/login`, exercise);
+    return this.http.post(`${this.workoutsUrl}/login`, exercise);
   }
+
+  getWorkoutTypes = (): Observable<any> => // add yeld type later
+    this.http.get(`${this.workoutTypes}`);
 }

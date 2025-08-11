@@ -3,23 +3,21 @@
     <div class="login__header font-bold">Welcome to Fitness App</div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-field">
-        <input
+        <app-input
+          formControlName="email"
           type="email"
           placeholder="Email"
-          class="login__input"
-          formControlName="email"
-          [class.error]="email?.invalid && email?.touched"
-        />
+          id="email-form"
+        ></app-input>
       </div>
 
       <div class="form-field">
-        <input
+        <app-input
           type="password"
           placeholder="Password"
-          class="login__input"
+          id="password-form"
           formControlName="password"
-          [class.error]="password?.invalid && password?.touched"
-        />
+        ></app-input>
       </div>
 
       <button

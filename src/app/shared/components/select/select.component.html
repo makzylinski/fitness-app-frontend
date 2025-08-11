@@ -1,0 +1,29 @@
+<div class="select">
+  @if(showLabel) {
+  <label [for]="id">{{ label }}</label>
+  }
+
+  <div class="select__dropdown" (click)="toggleOpen()">
+    <div class="select__dropdown--selected">
+      {{ selectedOption?.typeName }}
+    </div>
+    <img
+      src="assets/icons/Arrow-down.svg"
+      alt="arrow_down"
+      [class.rotated]="isDropdownOpen"
+    />
+  </div>
+  @if (isDropdownOpen) {
+  <div class="select__options">
+    <div class="select__options-search">
+      <img src="assets/icons/search.svg" alt="arrow_down" />
+      <input type="text" [(ngModel)]="serachValue" (input)="onSearch($event)" />
+    </div>
+    @for (option of (filteredOptions | async); track $index) {
+    <div class="select__options--single" (click)="setSelectedOption(option)">
+      {{ option.typeName }}
+    </div>
+    }
+  </div>
+  }
+</div>

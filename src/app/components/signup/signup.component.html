@@ -4,43 +4,39 @@
     <div class="signup__header font-bold">Create Account</div>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <div class="form-field">
-        <input
+        <app-input
+          formControlName="fullName"
           type="text"
           placeholder="Full Name"
-          class="signup__input"
-          formControlName="fullName"
-          [class.error]="fullName?.invalid && fullName?.touched"
-        />
+          id="fullName"
+        ></app-input>
       </div>
 
       <div class="form-field">
-        <input
+        <app-input
           type="email"
           placeholder="Email"
-          class="signup__input"
           formControlName="email"
-          [class.error]="email?.invalid && email?.touched"
-        />
+          id="email"
+        ></app-input>
       </div>
 
       <div class="form-field">
-        <input
+        <app-input
           type="password"
           placeholder="Password"
-          class="signup__input"
+          id="password"
           formControlName="password"
-          [class.error]="password?.invalid && password?.touched"
-        />
+        ></app-input>
       </div>
 
       <div class="form-field">
-        <input
+        <app-input
           type="password"
           placeholder="Confirm Password"
-          class="signup__input"
           formControlName="confirmPassword"
-          [class.error]="confirmPassword?.invalid && confirmPassword?.touched"
-        />
+          id="confirmPassword"
+        ></app-input>
       </div>
 
       <button

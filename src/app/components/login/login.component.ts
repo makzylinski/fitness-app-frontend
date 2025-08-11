@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NavigationService } from '../../services/navigation.service';
+import { InputComponent } from '../../shared/components/input/input.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, InputComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

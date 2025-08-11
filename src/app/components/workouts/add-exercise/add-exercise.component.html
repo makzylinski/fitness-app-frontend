@@ -1,1 +1,15 @@
-<p>add-exercise works!</p>
+<div class="add-exercise">
+  <div class="add-exercise__header">Add Exercise</div>
+  <div class="add-exercise__form">
+    <form (ngSubmit)="onSubmit()">
+      <app-select
+        [id]="'Exercise-Name'"
+        [label]="'Exercise Name'"
+        [name]="'Exercise-Name'"
+        [showLabel]="true"
+        [options]="options"
+        formControlName="name"
+      ></app-select>
+    </form>
+  </div>
+</div>
