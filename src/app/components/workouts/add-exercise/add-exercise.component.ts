@@ -17,14 +17,26 @@ export class AddExerciseComponent implements OnInit {
 
   options: Observable<any> = of(null);
   sets: number[] = [];
+  exercise: { reps: number | string; weight: number | string }[] = [];
+  currentReps: number | string = 0;
+  currentWeight: number | string = 0;
 
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();
   }
 
-  setReps = (inputData: string | number) => console.log(inputData);
+  setReps = (inputData: string | number) => (this.currentReps = inputData);
 
-  setWeight = (inputData: string | number) => console.log(inputData);
+  setWeight = (inputData: string | number) => (this.currentWeight = inputData);
 
-  addSet = () => null;
+  addSet = () => {
+    if (this.currentReps && this.currentWeight) {
+      this.exercise.push({
+        reps: this.currentReps,
+        weight: this.currentWeight,
+      });
+    }
+
+    console.log(this.exercise);
+  };
 }
