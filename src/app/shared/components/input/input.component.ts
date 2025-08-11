@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   forwardRef,
   Injector,
@@ -20,7 +20,6 @@ import {
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -41,14 +40,11 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   private onChange = (value: string) => {};
   private onTouched = () => {};
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     try {
       this.ngControl = this.injector.get(NgControl, undefined);
-      if (this.ngControl) {
-        this.ngControl.valueAccessor = this;
-      }
     } catch (error) {
       // NgControl not available
     }
@@ -74,14 +70,17 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     const target = event.target as HTMLInputElement;
     this.value = target.value;
     this.onChange(this.value);
+    this.cdr.markForCheck();
   }
 
   onBlur(): void {
     this.onTouched();
+    this.cdr.markForCheck();
   }
 
   writeValue(value: string): void {
     this.value = value || '';
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -94,5 +93,6 @@ export class InputComponent implements ControlValueAccessor, OnInit {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this.cdr.markForCheck();
   }
 }
