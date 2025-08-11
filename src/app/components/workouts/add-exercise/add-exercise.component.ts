@@ -20,4 +20,6 @@ export class AddExerciseComponent implements OnInit {
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();
   }
+
+  addSet = () => null;
 }
