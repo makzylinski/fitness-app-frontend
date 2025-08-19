@@ -14,6 +14,7 @@
       @for (item of exercise; track $index; let idx = $index) {
       <tr>
         <td>{{ idx + 1 }}.</td>
+        @if(idx === 0) {
         <td>
           <app-select
             [id]="'Exercise-Name'"
@@ -24,6 +25,20 @@
             formControlName="name"
           ></app-select>
         </td>
+        } @else {
+        <td>
+          <app-select
+            [id]="'Exercise-Name'"
+            [name]="'Exercise-Name'"
+            [label]="''"
+            [showLabel]="true"
+            [options]="options"
+            [disabled]="true"
+            formControlName="name"
+          ></app-select>
+        </td>
+        }
+
         <td>
           <app-input
             [width]="40"

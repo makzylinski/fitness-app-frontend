@@ -31,10 +31,19 @@
       border-color: #0d1c1a;
     }
 
-    &:disabled {
-      background-color: #f9fafb;
+    &.disabled {
+      background-color: #f3f4f6;
       color: #9ca3af;
       cursor: not-allowed;
+      border: 1px solid #e5e7eb;
+
+      &:hover {
+        border-color: #e5e7eb;
+      }
+
+      img {
+        opacity: 0.5;
+      }
     }
 
     option {

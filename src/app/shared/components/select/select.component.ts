@@ -22,11 +22,13 @@ import { TypeOfWorkout } from '../../model/type-of-workout';
 })
 export class SelectComponent implements OnInit {
   @Input() showLabel?: boolean = false;
+  @Input() preselectedOption?: any;
   @Input() label: string = '';
   @Input() options: Observable<any> = of(null);
   @Input() id: string = '';
   @Input() name: string = '';
   @Input() width: number = 307;
+  @Input() disabled: boolean = false;
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
@@ -53,7 +55,10 @@ export class SelectComponent implements OnInit {
     });
   }
 
-  toggleOpen = (): boolean => (this.isDropdownOpen = !this.isDropdownOpen);
+  toggleOpen = (): boolean => {
+    if (this.disabled) return false;
+    return (this.isDropdownOpen = !this.isDropdownOpen);
+  };
 
   setSelectedOption = (option: any): void => {
     this.selectedOption = option;

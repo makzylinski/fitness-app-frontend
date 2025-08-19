@@ -3,7 +3,11 @@
   <label [for]="id">{{ label }}</label>
   }
 
-  <div class="select__dropdown" (click)="toggleOpen()">
+  <div
+    class="select__dropdown"
+    (click)="toggleOpen()"
+    [class.disabled]="disabled"
+  >
     <div class="select__dropdown--selected">
       {{ selectedOption?.typeName }}
     </div>
