@@ -17,9 +17,8 @@ export class AddExerciseComponent implements OnInit {
 
   options: Observable<any> = of(null);
   sets: number[] = [];
-  exercise: { reps: number | string; weight: number | string }[] = [
-    { reps: 0, weight: 0 },
-  ];
+  exercise: { name: string; reps: number | string; weight: number | string }[] =
+    [{ name: '', reps: 0, weight: 0 }];
   currentReps: number | string = 0;
   currentWeight: number | string = 0;
 
@@ -34,6 +33,7 @@ export class AddExerciseComponent implements OnInit {
   addSet = () => {
     if (this.currentReps && this.currentWeight) {
       this.exercise.push({
+        name: '',
         reps: this.currentReps,
         weight: this.currentWeight,
       });

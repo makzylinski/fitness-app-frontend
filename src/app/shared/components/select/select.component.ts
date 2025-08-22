@@ -22,7 +22,6 @@ import { TypeOfWorkout } from '../../model/type-of-workout';
 })
 export class SelectComponent implements OnInit {
   @Input() showLabel?: boolean = false;
-  @Input() preselectedOption?: any;
   @Input() label: string = '';
   @Input() options: Observable<any> = of(null);
   @Input() id: string = '';
@@ -62,6 +61,7 @@ export class SelectComponent implements OnInit {
 
   setSelectedOption = (option: any): void => {
     this.selectedOption = option;
+    console.log(option);
     this.isDropdownOpen = false;
   };
 
