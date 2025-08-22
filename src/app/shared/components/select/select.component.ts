@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { TypeOfWorkout } from '../../model/type-of-workout';
 
 @Component({
   selector: 'app-select',
@@ -25,6 +26,8 @@ export class SelectComponent implements OnInit {
   @Input() options: Observable<any> = of(null);
   @Input() id: string = '';
   @Input() name: string = '';
+  @Input() width: number = 307;
+  @Input() disabled: boolean = false;
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
@@ -32,6 +35,8 @@ export class SelectComponent implements OnInit {
       this.isDropdownOpen = false;
     }
   }
+
+  TypeOfWorkout = TypeOfWorkout;
 
   constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
@@ -44,14 +49,19 @@ export class SelectComponent implements OnInit {
   ngOnInit(): void {
     this.options.subscribe((data) => {
       this.allOptions = data || [];
+      console.log(data);
       this.filteredOptions.next(this.allOptions);
     });
   }
 
-  toggleOpen = (): boolean => (this.isDropdownOpen = !this.isDropdownOpen);
+  toggleOpen = (): boolean => {
+    if (this.disabled) return false;
+    return (this.isDropdownOpen = !this.isDropdownOpen);
+  };
 
   setSelectedOption = (option: any): void => {
     this.selectedOption = option;
+    console.log(option);
     this.isDropdownOpen = false;
   };
 

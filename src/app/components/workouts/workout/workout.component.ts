@@ -7,12 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { WorkoutsService } from '../../../services/workouts.service';
-import { AddExerciseComponent } from '../add-exercise/add-exercise.component';
 
 @Component({
   selector: 'app-workout',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, AddExerciseComponent],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './workout.component.html',
   styleUrl: './workout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

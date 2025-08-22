@@ -6,6 +6,7 @@ import {
   Injector,
   Input,
   OnInit,
+  output,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -32,12 +33,17 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() type: string = 'text';
   @Input() placeholder: string = 'Input value...';
   @Input() id: string = 'Empty';
+  @Input() width: number = 330;
+
+  data = output<string | number>();
 
   value: string = '';
   disabled: boolean = false;
   ngControl?: NgControl;
 
-  private onChange = (value: string) => {};
+  private onChange = (value: string | number) => {
+    this.data.emit(value);
+  };
   private onTouched = () => {};
 
   constructor(private injector: Injector, private cdr: ChangeDetectorRef) {}
@@ -83,7 +89,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
     this.cdr.markForCheck();
   }
 
-  registerOnChange(fn: (value: string) => void): void {
+  registerOnChange(fn: (value: string | number) => void): void {
     this.onChange = fn;
   }
 

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
 
   label {
     color: #0d1c1a;
@@ -30,10 +31,19 @@
       border-color: #0d1c1a;
     }
 
-    &:disabled {
-      background-color: #f9fafb;
+    &.disabled {
+      background-color: #f3f4f6;
       color: #9ca3af;
       cursor: not-allowed;
+      border: 1px solid #e5e7eb;
+
+      &:hover {
+        border-color: #e5e7eb;
+      }
+
+      img {
+        opacity: 0.5;
+      }
     }
 
     option {
@@ -52,15 +62,24 @@
   }
 
   &__options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     color: #4f968f;
     background-color: #e8f2f2;
     border: none;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
     font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 0.25rem;
 
     &--single {
       padding: 10px;
+      display: flex;
+      gap: 10px;
       &:hover {
         cursor: pointer;
         background-color: #d1e7e5;
