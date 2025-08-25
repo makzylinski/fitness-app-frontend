@@ -30,7 +30,7 @@ export class AddExerciseComponent implements OnInit {
 
   setWeight = (inputData: string | number) => (this.currentWeight = inputData);
 
-  addSet = () => {
+  addSet = (): void => {
     if (this.currentReps && this.currentWeight) {
       this.exercise.push({
         name: '',
@@ -38,7 +38,7 @@ export class AddExerciseComponent implements OnInit {
         weight: this.currentWeight,
       });
     }
-
-    console.log(this.exercise);
   };
+
+  saveExercise = (): void => console.log('save');
 }
