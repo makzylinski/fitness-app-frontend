@@ -17,23 +17,29 @@ export class AddExerciseComponent implements OnInit {
 
   options: Observable<any> = of(null);
   sets: number[] = [];
-  exercise: { name: string; reps: number | string; weight: number | string }[] =
-    [{ name: '', reps: 0, weight: 0 }];
+  exercise: {
+    exercise: any;
+    reps: number | string;
+    weight: number | string;
+  }[] = [{ exercise: '', reps: 0, weight: 0 }];
   currentReps: number | string = 0;
   currentWeight: number | string = 0;
+  currentExercise: any;
 
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();
   }
 
-  setReps = (inputData: string | number) => (this.currentReps = inputData);
+  setReps = (inputData: any) => {
+    this.currentReps = inputData;
+  };
 
   setWeight = (inputData: string | number) => (this.currentWeight = inputData);
 
   addSet = (): void => {
     if (this.currentReps && this.currentWeight) {
       this.exercise.push({
-        name: '',
+        exercise: this.currentExercise,
         reps: this.currentReps,
         weight: this.currentWeight,
       });
@@ -42,5 +48,17 @@ export class AddExerciseComponent implements OnInit {
     console.log(this.exercise);
   };
 
-  saveExercise = (): void => console.log('save');
+  onSelectedName = (exercise: any) => {
+    // TODO add types
+    console.log(exercise);
+    this.currentExercise = exercise;
+  };
+
+  saveExercise = (): void => {
+    console.log('save');
+    if (this.currentReps && this.currentWeight && this.currentExercise) {
+      console.log('Add Exercise');
+      console.log(this.exercise);
+    }
+  };
 }

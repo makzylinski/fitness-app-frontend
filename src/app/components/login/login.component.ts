@@ -34,7 +34,6 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
-      console.log('Login form data:', formData);
       this.authService.login(formData.email, formData.password).subscribe(
         () => {
           this.navigationService.navigateToDashboard();
@@ -46,7 +45,6 @@ export class LoginComponent {
         }
       );
     } else {
-      console.log('Form is invalid');
       this.markFormGroupTouched();
     }
   }

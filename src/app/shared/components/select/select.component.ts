@@ -7,6 +7,7 @@ import {
   HostListener,
   Input,
   OnInit,
+  output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -28,6 +29,8 @@ export class SelectComponent implements OnInit {
   @Input() name: string = '';
   @Input() width: number = 307;
   @Input() disabled: boolean = false;
+
+  onSelect = output<string | number>();
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
@@ -63,6 +66,7 @@ export class SelectComponent implements OnInit {
     this.selectedOption = option;
     console.log(option);
     this.isDropdownOpen = false;
+    this.onSelect.emit(this.selectedOption);
   };
 
   onSearch = (search: any): void => {

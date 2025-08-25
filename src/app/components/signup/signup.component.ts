@@ -39,7 +39,6 @@ export class SignupComponent {
   onSubmit(): void {
     if (this.signupForm.valid) {
       const formData = this.signupForm.value;
-      console.log('Signup form data:', formData);
       this.authService
         .register(formData.email, formData.password, formData.fullName)
         .subscribe(
@@ -52,8 +51,6 @@ export class SignupComponent {
             this.clearForm();
           }
         );
-    } else {
-      console.log('Form is invalid');
     }
   }
 

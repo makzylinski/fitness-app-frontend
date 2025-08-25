@@ -23,6 +23,7 @@
             [showLabel]="true"
             [options]="options"
             formControlName="name"
+            (onSelect)="onSelectedName($event)"
           ></app-select>
         </td>
         } @else {
@@ -35,6 +36,7 @@
             [options]="options"
             [disabled]="true"
             formControlName="name"
+            (onSelect)="onSelectedName($event)"
           ></app-select>
         </td>
         }
