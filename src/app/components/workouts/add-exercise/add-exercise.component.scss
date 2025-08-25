@@ -41,4 +41,33 @@
       box-shadow: 0 0 0 2px rgba(79, 150, 143, 0.3);
     }
   }
+
+  .save-btn {
+    background-color: #4f968f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 100px;
+
+    &:hover {
+      background-color: #3a7870;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(79, 150, 143, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(79, 150, 143, 0.3);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(79, 150, 143, 0.3);
+    }
+  }
 }

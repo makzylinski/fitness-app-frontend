@@ -38,6 +38,8 @@ export class AddExerciseComponent implements OnInit {
         weight: this.currentWeight,
       });
     }
+
+    console.log(this.exercise);
   };
 
   saveExercise = (): void => console.log('save');
