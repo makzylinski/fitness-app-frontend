@@ -67,14 +67,7 @@ export class AddExerciseComponent implements OnInit {
 
   saveExercise = (): void => {
     console.log('save');
-    if (this.currentReps && this.currentWeight && this.currentExercise) {
-      if (
-        this.exercise[0].exercise === '' &&
-        this.exercise[0].reps === 0 &&
-        this.exercise[0].weight === 0
-      ) {
-        this.exercise.splice(0, 1);
-      }
+    if (this.exercise.length) {
       console.log('Add Exercise');
       console.log(this.exercise);
 
