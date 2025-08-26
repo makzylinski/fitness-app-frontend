@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { WorkoutsService } from '../../../services/workouts.service';
@@ -7,7 +8,7 @@ import { SelectComponent } from '../../../shared/components/select/select.compon
 @Component({
   selector: 'app-add-exercise',
   standalone: true,
-  imports: [SelectComponent, InputComponent],
+  imports: [SelectComponent, InputComponent, NgTemplateOutlet],
   templateUrl: './add-exercise.component.html',
   styleUrl: './add-exercise.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,8 +58,17 @@ export class AddExerciseComponent implements OnInit {
   saveExercise = (): void => {
     console.log('save');
     if (this.currentReps && this.currentWeight && this.currentExercise) {
+      if (
+        this.exercise[0].exercise === '' &&
+        this.exercise[0].reps === 0 &&
+        this.exercise[0].weight === 0
+      ) {
+        this.exercise.splice(0, 1);
+      }
       console.log('Add Exercise');
       console.log(this.exercise);
+
+      this.exercise = [];
     }
   };
 }

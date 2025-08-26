@@ -16,28 +16,11 @@
         <td>{{ idx + 1 }}.</td>
         @if(idx === 0) {
         <td>
-          <app-select
-            [id]="'Exercise-Name'"
-            [name]="'Exercise-Name'"
-            [label]="''"
-            [showLabel]="true"
-            [options]="options"
-            formControlName="name"
-            (onSelect)="onSelectedName($event)"
-          ></app-select>
+          <ng-container *ngTemplateOutlet="exerciseNameRow"></ng-container>
         </td>
         } @else {
         <td>
-          <app-select
-            [id]="'Exercise-Name'"
-            [name]="'Exercise-Name'"
-            [label]="''"
-            [showLabel]="true"
-            [options]="options"
-            [disabled]="true"
-            formControlName="name"
-            (onSelect)="onSelectedName($event)"
-          ></app-select>
+          <ng-container *ngTemplateOutlet="exerciseNameRow"></ng-container>
         </td>
         }
 
@@ -72,3 +55,19 @@
     </tbody>
   </table>
 </div>
+
+<ng-template
+  #exerciseNameRow
+  let-disabled="disabled"
+  let-showActions="showActions"
+>
+  <app-select
+    [id]="'Exercise-Name'"
+    [name]="'Exercise-Name'"
+    [label]="''"
+    [showLabel]="true"
+    [options]="options"
+    formControlName="name"
+    (onSelect)="onSelectedName($event)"
+  ></app-select>
+</ng-template>
