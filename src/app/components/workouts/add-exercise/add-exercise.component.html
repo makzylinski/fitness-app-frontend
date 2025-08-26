@@ -20,7 +20,9 @@
         </td>
         } @else {
         <td>
-          <ng-container *ngTemplateOutlet="exerciseNameRow"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="exerciseNameRow; context: { disabled: true }"
+          ></ng-container>
         </td>
         }
 
@@ -53,6 +55,7 @@
     [label]="''"
     [showLabel]="true"
     [options]="options"
+    [disabled]="disabled"
     (onSelect)="onSelectedName($event)"
   ></app-select>
 </ng-template>
