@@ -29,6 +29,7 @@ export class SelectComponent implements OnInit {
   @Input() name: string = '';
   @Input() width: number = 307;
   @Input() disabled: boolean = false;
+  @Input() exercise: any; // TODO add type
 
   onSelect = output<string | number>();
 
@@ -67,6 +68,7 @@ export class SelectComponent implements OnInit {
     console.log(option);
     this.isDropdownOpen = false;
     this.onSelect.emit(this.selectedOption);
+    this.cdr.markForCheck();
   };
 
   onSearch = (search: any): void => {

@@ -9,7 +9,11 @@
     [class.disabled]="disabled"
   >
     <div class="select__dropdown--selected">
-      {{ selectedOption?.typeName }}
+      {{
+        disabled
+          ? exercise?.typeName || exercise || "No selection"
+          : exercise?.typeName || "Select option"
+      }}
     </div>
     <img
       src="assets/icons/Arrow-down.svg"
