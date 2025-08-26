@@ -25,20 +25,10 @@
         }
 
         <td>
-          <app-input
-            [width]="40"
-            [type]="'number'"
-            [placeholder]="''"
-            (data)="setReps($event)"
-          ></app-input>
+          <ng-container *ngTemplateOutlet="exerciseRepsRow"></ng-container>
         </td>
         <td>
-          <app-input
-            [width]="50"
-            [type]="'number'"
-            [placeholder]="''"
-            (data)="setWeight($event)"
-          ></app-input>
+          <ng-container *ngTemplateOutlet="exerciseWeightRow"></ng-container>
         </td>
         @if(idx + 1 === exercise.length) {
         <td>
@@ -56,18 +46,31 @@
   </table>
 </div>
 
-<ng-template
-  #exerciseNameRow
-  let-disabled="disabled"
-  let-showActions="showActions"
->
+<ng-template #exerciseNameRow let-disabled="disabled">
   <app-select
     [id]="'Exercise-Name'"
     [name]="'Exercise-Name'"
     [label]="''"
     [showLabel]="true"
     [options]="options"
-    formControlName="name"
     (onSelect)="onSelectedName($event)"
   ></app-select>
+</ng-template>
+
+<ng-template #exerciseRepsRow let-disabled="disabled">
+  <app-input
+    [width]="40"
+    [type]="'number'"
+    [placeholder]="''"
+    (data)="setReps($event)"
+  ></app-input>
+</ng-template>
+
+<ng-template #exerciseWeightRow let-disabled="disabled">
+  <app-input
+    [width]="50"
+    [type]="'number'"
+    [placeholder]="''"
+    (data)="setWeight($event)"
+  ></app-input>
 </ng-template>
