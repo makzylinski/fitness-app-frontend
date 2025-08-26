@@ -70,4 +70,11 @@
       box-shadow: 0 0 0 2px rgba(79, 150, 143, 0.3);
     }
   }
+
+  .add-btn:disabled,
+  .add-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #ccc;
+  }
 }

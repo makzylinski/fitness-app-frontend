@@ -31,6 +31,10 @@ export class AddExerciseComponent implements OnInit {
     this.options = this.workoutService.getWorkoutTypes();
   }
 
+  get isAddButtonDisabled(): boolean {
+    return !this.currentReps || !this.currentWeight || !this.currentExercise;
+  }
+
   setReps = (inputData: any) => {
     this.currentReps = inputData;
   };

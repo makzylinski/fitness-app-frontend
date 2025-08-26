@@ -25,7 +25,15 @@
 
         @if (!exercise.length) {
         <td>
-          <button type="button" class="add-btn" (click)="addSet()">+</button>
+          <button
+            type="button"
+            class="add-btn"
+            (click)="addSet()"
+            [disabled]="isAddButtonDisabled"
+            [class.disabled]="isAddButtonDisabled"
+          >
+            +
+          </button>
         </td>
         <td>
           <button type="button" class="save-btn" (click)="saveExercise()">
@@ -52,7 +60,15 @@
         </td>
         @if(idx + 1 === exercise.length) {
         <td>
-          <button type="button" class="add-btn" (click)="addSet()">+</button>
+          <button
+            type="button"
+            class="add-btn"
+            [disabled]="isAddButtonDisabled"
+            [class.disabled]="isAddButtonDisabled"
+            (click)="addSet()"
+          >
+            +
+          </button>
         </td>
         <td>
           <button type="button" class="save-btn" (click)="saveExercise()">
