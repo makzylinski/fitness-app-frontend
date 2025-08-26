@@ -38,15 +38,21 @@ export class AddExerciseComponent implements OnInit {
   setWeight = (inputData: string | number) => (this.currentWeight = inputData);
 
   addSet = (): void => {
-    if (this.currentReps && this.currentWeight) {
-      this.exercise.push({
-        exercise: this.currentExercise,
-        reps: this.currentReps,
-        weight: this.currentWeight,
-      });
+    if (!this.currentReps || !this.currentWeight || !this.currentExercise) {
+      console.error('Inputs not filled.');
+      return;
     }
 
+    this.exercise.push({
+      exercise: this.currentExercise,
+      reps: this.currentReps,
+      weight: this.currentWeight,
+    });
+
     console.log(this.exercise);
+
+    this.currentReps = 0;
+    this.currentWeight = 0;
   };
 
   onSelectedName = (exercise: any) => {
