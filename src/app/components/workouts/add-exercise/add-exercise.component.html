@@ -11,20 +11,38 @@
       </tr>
     </thead>
     <tbody>
-      @for (item of exercise; track $index; let idx = $index) {
       <tr>
-        <td>{{ idx + 1 }}.</td>
-        @if(idx === 0) {
+        <td>1.</td>
         <td>
           <ng-container *ngTemplateOutlet="exerciseNameRow"></ng-container>
         </td>
-        } @else {
+        <td>
+          <ng-container *ngTemplateOutlet="exerciseRepsRow"></ng-container>
+        </td>
+        <td>
+          <ng-container *ngTemplateOutlet="exerciseWeightRow"></ng-container>
+        </td>
+
+        @if (!exercise.length) {
+        <td>
+          <button type="button" class="add-btn" (click)="addSet()">+</button>
+        </td>
+        <td>
+          <button type="button" class="save-btn" (click)="saveExercise()">
+            Save Exercise
+          </button>
+        </td>
+        }
+      </tr>
+      @for (item of exercise; track $index; let idx = $index) {
+      <tr>
+        <td>{{ exercise.length + 1 }}.</td>
+
         <td>
           <ng-container
             *ngTemplateOutlet="exerciseNameRow; context: { disabled: true }"
           ></ng-container>
         </td>
-        }
 
         <td>
           <ng-container *ngTemplateOutlet="exerciseRepsRow"></ng-container>

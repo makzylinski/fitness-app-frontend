@@ -22,7 +22,7 @@ export class AddExerciseComponent implements OnInit {
     exercise: any;
     reps: number | string;
     weight: number | string;
-  }[] = [{ exercise: '', reps: 0, weight: 0 }];
+  }[] = [];
   currentReps: number | string = 0;
   currentWeight: number | string = 0;
   currentExercise: any;
