@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { env } from '../environments/env';
+import { ExerciseSet } from '../models/exercise.model';
 import { setExercise } from '../store/workout/workout.actions';
+import { selectExercises } from '../store/workout/workout.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -24,4 +26,7 @@ export class WorkoutsService {
 
   getWorkoutTypes = (): Observable<any> => // add yeld type later
     this.http.get(`${this.workoutTypes}`);
+
+  selectExercises = (): Observable<ExerciseSet[]> =>
+    this.store.select(selectExercises);
 }
