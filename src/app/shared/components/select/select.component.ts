@@ -53,7 +53,6 @@ export class SelectComponent implements OnInit {
   ngOnInit(): void {
     this.options.subscribe((data) => {
       this.allOptions = data || [];
-      console.log(data);
       this.filteredOptions.next(this.allOptions);
     });
   }
@@ -65,7 +64,6 @@ export class SelectComponent implements OnInit {
 
   setSelectedOption = (option: any): void => {
     this.selectedOption = option;
-    console.log(option);
     this.isDropdownOpen = false;
     this.onSelect.emit(this.selectedOption);
     this.cdr.markForCheck();
