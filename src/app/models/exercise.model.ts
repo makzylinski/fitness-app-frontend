@@ -1,10 +1,12 @@
+import { TypeOfWorkout } from '../shared/model/type-of-workout';
+
 export interface WorkoutType {
   id: number;
   typeName: string;
   isFavourite: boolean;
   description: string;
   icon: string;
-  typeOfWorkout: 'STRENGTH' | 'CARDIO' | 'FLEXIBILITY' | 'BALANCE';
+  typeOfWorkout: TypeOfWorkout;
 }
 
 export interface ExerciseSet {

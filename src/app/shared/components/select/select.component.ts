@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { WorkoutType } from '../../../models/exercise.model';
 import { TypeOfWorkout } from '../../model/type-of-workout';
 
 @Component({
@@ -31,7 +32,7 @@ export class SelectComponent implements OnInit {
   @Input() disabled: boolean = false;
   @Input() exercise: any; // TODO add type
 
-  onSelect = output<string | number>();
+  onSelect = output<WorkoutType>();
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
@@ -44,7 +45,7 @@ export class SelectComponent implements OnInit {
 
   constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
-  selectedOption: any;
+  selectedOption!: WorkoutType;
   isDropdownOpen: boolean = false;
   serachValue: string = '';
   filteredOptions = new BehaviorSubject<any[]>([]);
@@ -62,9 +63,10 @@ export class SelectComponent implements OnInit {
     return (this.isDropdownOpen = !this.isDropdownOpen);
   };
 
-  setSelectedOption = (option: any): void => {
+  setSelectedOption = (option: WorkoutType): void => {
     this.selectedOption = option;
     this.isDropdownOpen = false;
+    console.log(this.selectedOption);
     this.onSelect.emit(this.selectedOption);
     this.cdr.markForCheck();
   };
