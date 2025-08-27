@@ -48,11 +48,11 @@ export class SelectComponent implements OnInit {
   selectedOption!: WorkoutType;
   isDropdownOpen: boolean = false;
   serachValue: string = '';
-  filteredOptions = new BehaviorSubject<any[]>([]);
-  private allOptions: any[] = [];
+  filteredOptions = new BehaviorSubject<WorkoutType[]>([]);
+  private allOptions: WorkoutType[] = [];
 
   ngOnInit(): void {
-    this.options.subscribe((data) => {
+    this.options.subscribe((data: WorkoutType[]) => {
       this.allOptions = data || [];
       this.filteredOptions.next(this.allOptions);
     });
@@ -72,6 +72,7 @@ export class SelectComponent implements OnInit {
   };
 
   onSearch = (search: any): void => {
+    console.log(search);
     const searchValue = search.target.value.toLowerCase();
     if (!searchValue) {
       this.filteredOptions.next(this.allOptions);
