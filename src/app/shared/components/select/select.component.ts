@@ -10,7 +10,7 @@ import {
   output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { WorkoutType } from '../../../models/exercise.model';
 import { TypeOfWorkout } from '../../model/type-of-workout';
 
@@ -25,12 +25,12 @@ import { TypeOfWorkout } from '../../model/type-of-workout';
 export class SelectComponent implements OnInit {
   @Input() showLabel?: boolean = false;
   @Input() label: string = '';
-  @Input() options: Observable<any> = of(null);
+  @Input() options!: Observable<WorkoutType[]>;
   @Input() id: string = '';
   @Input() name: string = '';
   @Input() width: number = 307;
   @Input() disabled: boolean = false;
-  @Input() exercise: any; // TODO add type
+  @Input() exercise?: WorkoutType;
 
   onSelect = output<WorkoutType>();
 
@@ -45,9 +45,8 @@ export class SelectComponent implements OnInit {
 
   constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
-  selectedOption!: WorkoutType;
+  selectedOption?: WorkoutType;
   isDropdownOpen: boolean = false;
-  serachValue: string = '';
   filteredOptions = new BehaviorSubject<WorkoutType[]>([]);
   private allOptions: WorkoutType[] = [];
 

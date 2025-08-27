@@ -17,7 +17,7 @@ import { SelectComponent } from '../../../shared/components/select/select.compon
 export class AddExerciseComponent implements OnInit {
   constructor(private workoutService: WorkoutsService) {}
 
-  options!: Observable<WorkoutType>;
+  options!: Observable<WorkoutType[]>;
   sets: number[] = [];
   exercise: ExerciseSet[] = [];
   currentReps: number | string = 0;
@@ -26,7 +26,6 @@ export class AddExerciseComponent implements OnInit {
 
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();
-    this.options.subscribe((e) => console.log(e));
   }
 
   get isAddButtonDisabled(): boolean {
