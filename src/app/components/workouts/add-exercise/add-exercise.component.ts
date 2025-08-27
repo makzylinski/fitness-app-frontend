@@ -71,6 +71,8 @@ export class AddExerciseComponent implements OnInit {
       console.log('Add Exercise');
       console.log(this.exercise);
 
+      this.workoutService.setExercise(this.exercise);
+
       this.exercise = [];
     }
   };
