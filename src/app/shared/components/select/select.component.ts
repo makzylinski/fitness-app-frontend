@@ -71,9 +71,8 @@ export class SelectComponent implements OnInit {
     this.cdr.markForCheck();
   };
 
-  onSearch = (search: any): void => {
-    console.log(search);
-    const searchValue = search.target.value.toLowerCase();
+  onSearch = (search: Event): void => {
+    const searchValue = (search.target as HTMLInputElement).value.toLowerCase();
     if (!searchValue) {
       this.filteredOptions.next(this.allOptions);
     } else {
