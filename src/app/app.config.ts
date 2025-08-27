@@ -5,10 +5,11 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideState, provideStore } from '@ngrx/store';
+import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { authInterceptor } from './interceptors/auth.interceptor';
+import { reducers } from './store/app.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideStore(),
-    provideState(workoutFeature),
+    provideStore(reducers),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
