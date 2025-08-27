@@ -1,6 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { ExerciseSet } from '../../../models/exercise.model';
 import { WorkoutsService } from '../../../services/workouts.service';
 import { InputComponent } from '../../../shared/components/input/input.component';
 import { SelectComponent } from '../../../shared/components/select/select.component';
@@ -18,11 +19,7 @@ export class AddExerciseComponent implements OnInit {
 
   options: Observable<any> = of(null);
   sets: number[] = [];
-  exercise: {
-    exercise: any;
-    reps: number | string;
-    weight: number | string;
-  }[] = [];
+  exercise: ExerciseSet[] = [];
   currentReps: number | string = 0;
   currentWeight: number | string = 0;
   currentExercise: any;
@@ -66,13 +63,8 @@ export class AddExerciseComponent implements OnInit {
   };
 
   saveExercise = (): void => {
-    console.log('save');
     if (this.exercise.length) {
-      console.log('Add Exercise');
-      console.log(this.exercise);
-
       this.workoutService.setExercise(this.exercise);
-
       this.exercise = [];
     }
   };
