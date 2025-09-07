@@ -1,6 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ExerciseSet, WorkoutType } from '../../../models/exercise.model';
 import { WorkoutsService } from '../../../services/workouts.service';
 import { InputComponent } from '../../../shared/components/input/input.component';
 import { SelectComponent } from '../../../shared/components/select/select.component';
@@ -16,16 +17,12 @@ import { SelectComponent } from '../../../shared/components/select/select.compon
 export class AddExerciseComponent implements OnInit {
   constructor(private workoutService: WorkoutsService) {}
 
-  options: Observable<any> = of(null);
+  options!: Observable<WorkoutType[]>;
   sets: number[] = [];
-  exercise: {
-    exercise: any;
-    reps: number | string;
-    weight: number | string;
-  }[] = [];
+  exercise: ExerciseSet[] = [];
   currentReps: number | string = 0;
   currentWeight: number | string = 0;
-  currentExercise: any;
+  currentExercise!: WorkoutType;
 
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();
@@ -53,26 +50,17 @@ export class AddExerciseComponent implements OnInit {
       weight: this.currentWeight,
     });
 
-    console.log(this.exercise);
-
     this.currentReps = 0;
     this.currentWeight = 0;
   };
 
-  onSelectedName = (exercise: any) => {
-    // TODO add types
-    console.log(exercise);
+  onSelectedName = (exercise: WorkoutType): void => {
     this.currentExercise = exercise;
   };
 
   saveExercise = (): void => {
-    console.log('save');
     if (this.exercise.length) {
-      console.log('Add Exercise');
-      console.log(this.exercise);
-
       this.workoutService.setExercise(this.exercise);
-
       this.exercise = [];
     }
   };

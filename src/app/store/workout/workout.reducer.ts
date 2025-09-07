@@ -1,11 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { setExercise } from './workout.actions';
-
-export const initialState: any = {
-  exercise: '',
-};
+import { reset, setExercise } from './workout.actions';
+import { initialWorkoutState } from './workout.model';
 
 export const workoutReducer = createReducer(
-  initialState,
-  on(setExercise, (state, { exercise }) => ({ ...state, exercise }))
+  initialWorkoutState,
+  on(setExercise, (state, { exercise }) => ({
+    ...state,
+    exercise: [...state.exercise, ...exercise],
+  })),
+  on(reset, () => initialWorkoutState)
 );
