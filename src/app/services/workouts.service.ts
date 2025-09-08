@@ -27,7 +27,7 @@ export class WorkoutsService {
   setExercise = (exercise: any) =>
     this.store.dispatch(setExercise({ exercise }));
 
-  getWorkoutTypes = (): Observable<any> => // add yeld type later
+  getWorkoutTypes = (): Observable<any> => // TODO add yeld type later
     this.http.get(`${this.workoutTypes}`);
 
   selectExercises = (): Observable<ExerciseSet[]> =>
