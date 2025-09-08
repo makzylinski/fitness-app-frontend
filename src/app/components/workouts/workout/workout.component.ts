@@ -33,6 +33,9 @@ export class WorkoutComponent {
 
   onSubmit(): void {
     console.log(this.workoutForm.value);
+    this.workoutsService
+      .selectExercisesLength()
+      .subscribe((e) => console.log(e));
     // this.workoutsService.saveExercise(this.workoutForm)
   }
 

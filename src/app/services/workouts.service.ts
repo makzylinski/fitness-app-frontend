@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { env } from '../environments/env';
 import { ExerciseSet } from '../models/exercise.model';
 import { setExercise } from '../store/workout/workout.actions';
-import { selectExercises } from '../store/workout/workout.selectors';
+import {
+  selectExercises,
+  selectIfExercisesExist,
+} from '../store/workout/workout.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -29,4 +32,7 @@ export class WorkoutsService {
 
   selectExercises = (): Observable<ExerciseSet[]> =>
     this.store.select(selectExercises);
+
+  selectExercisesLength = (): Observable<number> =>
+    this.store.select(selectIfExercisesExist);
 }
