@@ -23,9 +23,10 @@ export class WorkoutComponent {
     private formBuilder: FormBuilder,
     private workoutsService: WorkoutsService
   ) {
+    const today = new Date().toISOString().split('T')[0];
     this.workoutForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      date: ['', Validators.required],
+      date: [today, Validators.required],
       notes: [''],
     });
   }
