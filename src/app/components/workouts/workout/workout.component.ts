@@ -32,7 +32,7 @@ export class WorkoutComponent {
   }
 
   onSubmit(): void {
-    console.log(this.workoutForm);
+    console.log(this.workoutForm.value);
     // this.workoutsService.saveExercise(this.workoutForm)
   }
 
