@@ -43,9 +43,7 @@ export class WorkoutComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.workoutForm.valid) {
-      console.log(this.workoutForm.value);
-    }
+    this.workoutsService.saveExercise(this.workoutForm.value).subscribe();
   }
 
   get name() {

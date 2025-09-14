@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { env } from '../environments/env';
 import { ExerciseSet } from '../models/exercise.model';
 import { setExercise } from '../store/workout/workout.actions';
@@ -20,8 +20,20 @@ export class WorkoutsService {
 
   constructor(private http: HttpClient, private readonly store: Store) {}
 
-  saveExercise(exercise: any): Observable<any> {
-    return this.http.post(`${this.workoutsUrl}/login`, exercise);
+  saveExercise(exerciseDetails: any): Observable<any> {
+    return this.selectExercises().pipe(
+      switchMap((exercises: ExerciseSet[]) => {
+        const workoutData = {
+          exerciseDetails,
+          exercises,
+        };
+        return this.http.post(`${this.workoutsUrl}`, workoutData);
+      }),
+      catchError((error) => {
+        console.error('Error saving exercise:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   setExercise = (exercise: any) =>
