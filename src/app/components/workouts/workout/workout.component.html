@@ -48,9 +48,9 @@
     <button
       type="submit"
       class="workout-form__button"
-      [disabled]="workoutForm.invalid"
+      [disabled]="!(isFormSubmittable$ | async)"
     >
-      Add Exercise
+      Save Workout
     </button>
   </form>
 </div>

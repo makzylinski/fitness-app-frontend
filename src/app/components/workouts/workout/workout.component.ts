@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Observable, combineLatest, map, of } from 'rxjs';
 import { WorkoutsService } from '../../../services/workouts.service';
 
 @Component({
@@ -16,23 +17,33 @@ import { WorkoutsService } from '../../../services/workouts.service';
   styleUrl: './workout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WorkoutComponent {
+export class WorkoutComponent implements OnInit {
   workoutForm: FormGroup;
+  isFormSubmittable$: Observable<boolean> = of(false);
 
   constructor(
     private formBuilder: FormBuilder,
     private workoutsService: WorkoutsService
   ) {
+    const today = new Date().toISOString().split('T')[0];
     this.workoutForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      date: ['', Validators.required],
+      date: [today, Validators.required],
       notes: [''],
     });
   }
 
+  ngOnInit() {
+    this.isFormSubmittable$ = combineLatest([
+      this.workoutForm.statusChanges.pipe(map(() => this.workoutForm.valid)),
+      this.workoutsService
+        .selectExercisesLength()
+        .pipe(map((length) => length > 0)),
+    ]).pipe(map(([isFormValid, hasExercises]) => isFormValid && hasExercises));
+  }
+
   onSubmit(): void {
-    console.log(this.workoutForm);
-    // this.workoutsService.saveExercise(this.workoutForm)
+    this.workoutsService.saveExercise(this.workoutForm.value).subscribe();
   }
 
   get name() {
