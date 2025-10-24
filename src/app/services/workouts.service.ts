@@ -23,11 +23,16 @@ export class WorkoutsService {
   saveExercise(exerciseDetails: any): Observable<any> {
     return this.selectExercises().pipe(
       switchMap((exercises: ExerciseSet[]) => {
+        const updatedExerciseDetails = {
+          ...exerciseDetails,
+          date: new Date(exerciseDetails.date),
+        };
+        console.log(updatedExerciseDetails);
         const workoutData = {
-          exerciseDetails,
+          exerciseDetails: updatedExerciseDetails,
           exercises,
         };
-        return this.http.post(`${this.workoutsUrl}`, workoutData);
+        return this.http.post(`${this.workoutsUrl}/add`, workoutData);
       }),
       catchError((error) => {
         console.error('Error saving exercise:', error);
