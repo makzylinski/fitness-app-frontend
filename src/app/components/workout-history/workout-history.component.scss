@@ -1,0 +1,17 @@
+.workout-history {
+  width: 80vw;
+  margin: 20px auto;
+
+  &__header--main {
+    color: #0d1c1a;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+  &__header--subheader {
+    color: #4f968f;
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
