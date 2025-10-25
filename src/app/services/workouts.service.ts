@@ -20,7 +20,7 @@ export class WorkoutsService {
 
   constructor(private http: HttpClient, private readonly store: Store) {}
 
-  saveExercise(exerciseDetails: any): Observable<any> {
+  saveWorkout(exerciseDetails: any): Observable<any> {
     return this.selectExercises().pipe(
       switchMap((exercises: ExerciseSet[]) => {
         const updatedExerciseDetails = {
@@ -41,7 +41,7 @@ export class WorkoutsService {
     );
   }
 
-  getExercises = () => this.http.get(`${this.workoutsUrl}`);
+  getWorkouts = () => this.http.get(`${this.workoutsUrl}`);
 
   setExercise = (exercise: any) =>
     this.store.dispatch(setExercise({ exercise }));

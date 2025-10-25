@@ -41,11 +41,11 @@ export class WorkoutComponent implements OnInit {
         .pipe(map((length) => length > 0)),
     ]).pipe(map(([isFormValid, hasExercises]) => isFormValid && hasExercises));
 
-    this.workoutsService.getExercises().subscribe((e) => console.log(e));
+    this.workoutsService.getWorkouts().subscribe((e) => console.log(e));
   }
 
   onSubmit(): void {
-    this.workoutsService.saveExercise(this.workoutForm.value).subscribe();
+    this.workoutsService.saveWorkout(this.workoutForm.value).subscribe();
   }
 
   get name() {
