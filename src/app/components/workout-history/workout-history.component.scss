@@ -2,6 +2,11 @@
   width: 80vw;
   margin: 20px auto;
 
+  &__header,
+  &__container {
+    padding: 16px;
+  }
+
   &__header--main {
     color: #0d1c1a;
     font-size: 32px;
@@ -13,5 +18,12 @@
     color: #4f968f;
     font-size: 14px;
     line-height: 21px;
+  }
+
+  &__container--header {
+    color: #0d1c1a;
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 700;
   }
 }
