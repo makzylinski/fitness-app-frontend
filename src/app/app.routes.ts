@@ -43,6 +43,13 @@ export const routes: Routes = [
     title: 'Dashboard - Fitness App',
   },
   {
+    path: 'workout-history',
+    loadComponent: () =>
+      import('./components/workout-history/workout-history.component').then(
+        (c) => c.WorkoutHistoryComponent
+      ),
+  },
+  {
     path: '**',
     redirectTo: '/login',
   },
