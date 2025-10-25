@@ -40,6 +40,8 @@ export class WorkoutComponent implements OnInit {
         .selectExercisesLength()
         .pipe(map((length) => length > 0)),
     ]).pipe(map(([isFormValid, hasExercises]) => isFormValid && hasExercises));
+
+    this.workoutsService.getExercises().subscribe((e) => console.log(e));
   }
 
   onSubmit(): void {

@@ -41,6 +41,8 @@ export class WorkoutsService {
     );
   }
 
+  getExercises = () => this.http.get(`${this.workoutsUrl}`);
+
   setExercise = (exercise: any) =>
     this.store.dispatch(setExercise({ exercise }));
 
