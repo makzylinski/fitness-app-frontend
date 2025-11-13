@@ -4,6 +4,11 @@ import { WorkoutState } from './workout.model';
 export const selectWorkoutState =
   createFeatureSelector<WorkoutState>('workout');
 
+export const selectWorkout = createSelector(
+  selectWorkoutState,
+  (state: WorkoutState) => state?.workout ?? []
+);
+
 export const selectExercises = createSelector(
   selectWorkoutState,
   (state: WorkoutState) => state?.exercise ?? []

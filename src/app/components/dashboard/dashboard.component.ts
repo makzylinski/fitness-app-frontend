@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { WorkoutsService } from '../../services/workouts.service';
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
+import { Workout } from '../../models/workout.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ import { DashboardCardComponent } from './dashboard-card/dashboard-card.componen
 })
 export class DashboardComponent implements OnInit {
   constructor(private readonly workoutsService: WorkoutsService) {}
+
   ngOnInit(): void {
-    this.workoutsService.getWorkouts().subscribe((e) => console.log(e));
+    this.workoutsService.getWorkouts().subscribe((workouts) => this.workoutsService.setWorkout(workouts as Workout[]));
   }
 }
