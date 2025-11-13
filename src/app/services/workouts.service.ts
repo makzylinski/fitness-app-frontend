@@ -8,6 +8,7 @@ import { setExercise, setWorkout } from '../store/workout/workout.actions';
 import {
   selectExercises,
   selectIfExercisesExist,
+  selectWorkout,
 } from '../store/workout/workout.selectors';
 import { Workout } from '../models/workout.model';
 
@@ -57,4 +58,7 @@ export class WorkoutsService {
 
   selectExercisesLength = (): Observable<number> =>
     this.store.select(selectIfExercisesExist);
+
+  selectWorkouts = (): Observable<Workout[]> =>
+    this.store.select(selectWorkout);
 }

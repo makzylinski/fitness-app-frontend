@@ -12,7 +12,13 @@
     <h2 class="workout-history__section-title">Completed Workouts</h2>
 
     <ul class="workout-history__list">
-      <li class="workout-history__item"></li>
+      @for (workout of (workouts$ | async); track $index) {
+      <li class="workout-history__item">
+        <div class="workout-history__item-icon"></div>
+        <div class="workout-history__item-details">{{ workout.note }}</div>
+        <div class="workout-history__item-date">{{ workout.date }}</div>
+      </li>
+      }
       <li class="workout-history__empty">No workouts yet</li>
     </ul>
   </div>
