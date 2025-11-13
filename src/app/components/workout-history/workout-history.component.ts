@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { WorkoutsService } from '../../services/workouts.service';
 
 @Component({
   selector: 'app-workout-history',
@@ -8,6 +9,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './workout-history.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WorkoutHistoryComponent {
+export class WorkoutHistoryComponent implements OnInit {
 
+  constructor(private readonly workoutsService: WorkoutsService) { }
+
+  ngOnInit(): void {
+    this.workoutsService.getWorkouts().subscribe((workouts) => {
+      console.log('Fetched workouts:', workouts);
+    });
+  }
 }
