@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { WorkoutsService } from '../../services/workouts.service';
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
+import { Workout } from '../../models/workout.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,4 +11,10 @@ import { DashboardCardComponent } from './dashboard-card/dashboard-card.componen
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent {}
+export class DashboardComponent implements OnInit {
+  constructor(private readonly workoutsService: WorkoutsService) {}
+
+  ngOnInit(): void {
+    this.workoutsService.getWorkouts().subscribe((workouts) => this.workoutsService.setWorkout(workouts as Workout[]));
+  }
+}

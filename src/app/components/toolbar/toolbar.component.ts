@@ -27,4 +27,8 @@ export class ToolbarComponent {
   onWorkoutsClick(): void {
     this.navigationService.navigateToWorkouts();
   }
+
+  onWorkoutHistoryClick(): void {
+    this.navigationService.navigateToWorkoutHistory();
+  }
 }

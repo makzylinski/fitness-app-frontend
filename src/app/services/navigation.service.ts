@@ -22,4 +22,8 @@ export class NavigationService {
   navigateToWorkouts(): Promise<boolean> {
     return this.router.navigate(['/workouts']);
   }
+
+  navigateToWorkoutHistory(): Promise<boolean> {
+    return this.router.navigate(['/workout-history']);
+  }
 }

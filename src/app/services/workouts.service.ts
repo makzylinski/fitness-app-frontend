@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { env } from '../environments/env';
 import { ExerciseSet } from '../models/exercise.model';
-import { setExercise } from '../store/workout/workout.actions';
+import { setExercise, setWorkout } from '../store/workout/workout.actions';
 import {
   selectExercises,
   selectIfExercisesExist,
+  selectWorkout,
 } from '../store/workout/workout.selectors';
+import { Workout } from '../models/workout.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,7 @@ export class WorkoutsService {
 
   constructor(private http: HttpClient, private readonly store: Store) {}
 
-  saveExercise(exerciseDetails: any): Observable<any> {
+  saveWorkout(exerciseDetails: any): Observable<any> {
     return this.selectExercises().pipe(
       switchMap((exercises: ExerciseSet[]) => {
         const updatedExerciseDetails = {
@@ -41,17 +43,22 @@ export class WorkoutsService {
     );
   }
 
-  getExercises = () => this.http.get(`${this.workoutsUrl}`);
-
-  setExercise = (exercise: any) =>
-    this.store.dispatch(setExercise({ exercise }));
+  getWorkouts = () => this.http.get(`${this.workoutsUrl}`);
 
   getWorkoutTypes = (): Observable<any> => // TODO add yeld type later
     this.http.get(`${this.workoutTypes}`);
+
+  setWorkout = (workout: Workout[]) => this.store.dispatch(setWorkout({ workout }));
+
+  setExercise = (exercise: any) =>
+    this.store.dispatch(setExercise({ exercise }));
 
   selectExercises = (): Observable<ExerciseSet[]> =>
     this.store.select(selectExercises);
 
   selectExercisesLength = (): Observable<number> =>
     this.store.select(selectIfExercisesExist);
+
+  selectWorkouts = (): Observable<Workout[]> =>
+    this.store.select(selectWorkout);
 }

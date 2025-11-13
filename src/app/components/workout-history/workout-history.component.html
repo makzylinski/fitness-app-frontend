@@ -1,0 +1,34 @@
+<section class="workout-history" aria-labelledby="workout-history-title">
+  <header class="workout-history__header">
+    <h1 id="workout-history-title" class="workout-history__title">
+      Workout History
+    </h1>
+    <p class="workout-history__subtitle">
+      Review your past workouts and track your progress over time.
+    </p>
+  </header>
+
+  <div class="workout-history__content">
+    <h2 class="workout-history__section-title">Completed Workouts</h2>
+
+    <ul class="workout-history__list">
+      @for (workout of (workouts$ | async); track $index) {
+      <li class="workout-history__item">
+        <img src="assets/icons/weight-lifting-icon.svg" [alt]="workout.workoutName" class="workout-history__item-icon">
+        <div class="workout-history__item-details">
+          <div class="workout-history__item-details--name">
+            {{ workout.workoutName }}
+          </div>
+          <div class="workout-history__item-detils--details">
+            {{ workout.exercises.length }} Exercises &middot;
+          </div>
+        </div>
+        <div class="workout-history__item-date">{{ workout.date }}</div>
+      </li>
+      }
+      @if((workouts$ | async)?.length === 0) {
+      <li class="workout-history__empty">No workouts yet</li>
+      }
+    </ul>
+  </div>
+</section>
