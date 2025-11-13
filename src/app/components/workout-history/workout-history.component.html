@@ -26,7 +26,9 @@
         <div class="workout-history__item-date">{{ workout.date }}</div>
       </li>
       }
+      @if((workouts$ | async)?.length === 0) {
       <li class="workout-history__empty">No workouts yet</li>
+      }
     </ul>
   </div>
 </section>
