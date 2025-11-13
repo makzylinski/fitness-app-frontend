@@ -14,8 +14,15 @@
     <ul class="workout-history__list">
       @for (workout of (workouts$ | async); track $index) {
       <li class="workout-history__item">
-        <div class="workout-history__item-icon"></div>
-        <div class="workout-history__item-details">{{ workout.note }}</div>
+        <img src="assets/icons/weight-lifting-icon.svg" [alt]="workout.workoutName" class="workout-history__item-icon">
+        <div class="workout-history__item-details">
+          <div class="workout-history__item-details--name">
+            {{ workout.workoutName }}
+          </div>
+          <div class="workout-history__item-detils--details">
+            {{ workout.exercises.length }} Exercises &middot;
+          </div>
+        </div>
         <div class="workout-history__item-date">{{ workout.date }}</div>
       </li>
       }
