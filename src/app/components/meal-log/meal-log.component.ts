@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class MealLogComponent {
   mealLogForm: FormGroup;
+  isButtonClicked: boolean = false;
   mealList = [{
     name: 'Breakfast',
   },
@@ -34,5 +35,5 @@ export class MealLogComponent {
     });
   }
 
-  onHeaderClick = (): void => console.log('Header clicked');
+  onHeaderClick = (): boolean => this.isButtonClicked = !this.isButtonClicked;
 }

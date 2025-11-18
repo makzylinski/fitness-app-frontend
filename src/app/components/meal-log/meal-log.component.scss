@@ -26,10 +26,6 @@
             align-items: center;
             justify-content: space-between;
 
-            &.rotated {
-                transform: rotate(180deg);
-            }
-
             h2 {
                 margin: 0;
             }
@@ -42,4 +38,9 @@
     height: 20px;
     width: 20px;
     cursor: pointer;
+
+    &.rotated {
+        transform: rotate(180deg);
+    }
+
 }
