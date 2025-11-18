@@ -28,6 +28,10 @@ export class ToolbarComponent {
     this.navigationService.navigateToWorkouts();
   }
 
+  onMealLogClick(): void {
+    this.navigationService.navigateToMealLog();
+  }
+
   onWorkoutHistoryClick(): void {
     this.navigationService.navigateToWorkoutHistory();
   }

@@ -48,6 +48,17 @@ export const routes: Routes = [
       import('./components/workout-history/workout-history.component').then(
         (c) => c.WorkoutHistoryComponent
       ),
+    canActivate: [authGuard],
+    title: 'Workout History - Fitness App',
+  },
+  {
+    path: 'meal-log',
+    loadComponent: () =>
+      import('./components/meal-log/meal-log.component').then(
+        (c) => c.MealLogComponent
+      ),
+    canActivate: [authGuard],
+    title: 'Meal Log - Fitness App',
   },
   {
     path: '**',
