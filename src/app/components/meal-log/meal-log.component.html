@@ -7,4 +7,16 @@
             Review your past meals and track your progress over time.
         </p>
     </div>
+
+    <form class="meal-log__content" [formGroup]="mealLogForm">
+        @for (meal of mealList; track $index) {
+        <div class="meal-log__meal" (click)="onHeaderClick()">
+            <div class="meal-log__meal--header">
+                <h2>{{ meal.name }}</h2>
+                <img src="assets/icons/Arrow-down.svg" class="arrow_down" [class.rotated]="isButtonClicked" alt="arrow_down" />
+            </div>
+            <app-input></app-input>
+        </div>
+        }
+    </form>
 </div>
