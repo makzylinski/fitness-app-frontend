@@ -7,19 +7,24 @@
             Review your past meals and track your progress over time.
         </p>
     </div>
-    <div class="meal-log__content">
+
+    <form class="meal-log__content" [formGroup]="mealLogForm">
         <div class="meal-log__breakfast">
             <h2>Breakfast</h2>
+            <app-input></app-input>
         </div>
         <div class="meal-log__lunch">
             <h2>Lunch</h2>
+            <app-input></app-input>
         </div>
         <div class="meal-log__dinner">
             <h2>Dinner</h2>
+            <app-input></app-input>
         </div>
         <div class="meal-log__snacks">
             <h2>Snacks</h2>
+            <app-input></app-input>
         </div>
-        <app-input></app-input>
-    </div>
+
+    </form>
 </div>
