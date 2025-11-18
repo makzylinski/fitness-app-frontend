@@ -10,7 +10,10 @@
 
     <form class="meal-log__content" [formGroup]="mealLogForm">
         <div class="meal-log__breakfast">
-            <h2>Breakfast</h2>
+            <div class="meal-log__breakfast--header">
+                <h2>Breakfast</h2>
+                <img src="assets/icons/Arrow-down.svg" class="arrow_down" alt="arrow_down" />
+            </div>
             <app-input></app-input>
         </div>
         <div class="meal-log__lunch">
