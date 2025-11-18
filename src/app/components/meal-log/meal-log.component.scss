@@ -1,5 +1,5 @@
 .meal-log {
-    width: 330px;
+    width: 350px;
     margin: 20px 140px;
 
     &__header,
@@ -20,11 +20,15 @@
         line-height: 21px;
     }
 
-    &__breakfast {
+    &__meal {
         &--header {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            &.rotated {
+                transform: rotate(180deg);
+            }
 
             h2 {
                 margin: 0;
@@ -37,4 +41,5 @@
 .arrow_down {
     height: 20px;
     width: 20px;
+    cursor: pointer;
 }

@@ -9,25 +9,14 @@
     </div>
 
     <form class="meal-log__content" [formGroup]="mealLogForm">
-        <div class="meal-log__breakfast">
-            <div class="meal-log__breakfast--header">
-                <h2>Breakfast</h2>
-                <img src="assets/icons/Arrow-down.svg" class="arrow_down" alt="arrow_down" />
+        @for (meal of mealList; track $index) {
+        <div class="meal-log__meal" (click)="onHeaderClick()">
+            <div class="meal-log__meal--header">
+                <h2>{{ meal.name }}</h2>
+                <img src="assets/icons/Arrow-down.svg" class="arrow_down" [class.rotated]="" alt="arrow_down" />
             </div>
             <app-input></app-input>
         </div>
-        <div class="meal-log__lunch">
-            <h2>Lunch</h2>
-            <app-input></app-input>
-        </div>
-        <div class="meal-log__dinner">
-            <h2>Dinner</h2>
-            <app-input></app-input>
-        </div>
-        <div class="meal-log__snacks">
-            <h2>Snacks</h2>
-            <app-input></app-input>
-        </div>
-
+        }
     </form>
 </div>

@@ -12,14 +12,27 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class MealLogComponent {
   mealLogForm: FormGroup;
+  mealList = [{
+    name: 'Breakfast',
+  },
+  {
+    name: 'Lunch',
+  },
+  {
+    name: 'Dinner',
+  },
+  {
+    name: 'Snacks',
+  }];
 
   constructor(
-      private formBuilder: FormBuilder
-    ) {
-      this.mealLogForm = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-      });
-    }
+    private formBuilder: FormBuilder
+  ) {
+    this.mealLogForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
+  onHeaderClick = (): void => console.log('Header clicked');
 }
