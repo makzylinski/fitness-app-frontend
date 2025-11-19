@@ -33,6 +33,13 @@ export class MealLogComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+
+    fetch("https://world.openfoodfacts.net/api/v2/product/3274080005003.json", {
+      method: "GET",
+      headers: { Authorization: "Basic " + btoa("off:off") },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   }
 
   onHeaderClick = (): boolean => this.isButtonClicked = !this.isButtonClicked;

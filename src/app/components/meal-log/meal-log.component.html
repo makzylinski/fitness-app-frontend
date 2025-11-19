@@ -10,12 +10,17 @@
 
     <form class="meal-log__content" [formGroup]="mealLogForm">
         @for (meal of mealList; track $index) {
-        <div class="meal-log__meal" (click)="onHeaderClick()">
-            <div class="meal-log__meal--header">
+        <div class="meal-log__meal">
+            <div class="meal-log__meal--header" (click)="onHeaderClick()">
                 <h2>{{ meal.name }}</h2>
-                <img src="assets/icons/Arrow-down.svg" class="arrow_down" [class.rotated]="isButtonClicked" alt="arrow_down" />
+                <img src="assets/icons/Arrow-down.svg" class="arrow_down" [class.rotated]="isButtonClicked"
+                    alt="arrow_down" />
             </div>
-            <app-input></app-input>
+            <div class="meal-log__meal--actions">
+                <app-input></app-input>
+                <img src="assets/icons/photo-camera.svg" class="photo-camera" alt="photo_camera" />
+
+            </div>
         </div>
         }
     </form>
