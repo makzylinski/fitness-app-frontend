@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BarcodeScannerComponent } from "../../shared/components/barcode-scanner/barcode-scanner.component";
 
 @Component({
   selector: 'app-meal-log',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent],
+  imports: [ReactiveFormsModule, InputComponent, BarcodeScannerComponent],
   templateUrl: './meal-log.component.html',
   styleUrl: './meal-log.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
