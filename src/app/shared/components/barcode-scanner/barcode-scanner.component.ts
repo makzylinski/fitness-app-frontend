@@ -34,6 +34,10 @@ export class BarcodeScannerComponent implements OnInit {
     console.log('Scan Complete:', result);
   }
 
+  scanErrorHandler(error: any): void {
+    console.error('Scan Error:', error);
+  }
+
   scanSuccessHandler(result: any): void {
     console.log('Scan Success:', result);
   }
