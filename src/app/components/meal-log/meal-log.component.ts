@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BarcodeScannerComponent } from "../../shared/components/barcode-scanner/barcode-scanner.component";
+import { FoodService } from '../../services/food.service';
 
 @Component({
   selector: 'app-meal-log',
@@ -28,6 +29,7 @@ export class MealLogComponent {
   }];
 
   constructor(
+    private readonly foodService: FoodService,
     private formBuilder: FormBuilder
   ) {
     this.mealLogForm = this.formBuilder.group({
@@ -45,6 +47,9 @@ export class MealLogComponent {
 
   scannedProductId = (productId: string | number) => {
     console.log('Scanned Product ID:', productId);
+    this.foodService.getProductByBarcode(productId.toString()).subscribe((foodData) => {
+      console.log('Food Data:', foodData);
+    });
   };
 
   onHeaderClick = (): boolean => this.isButtonClicked = !this.isButtonClicked;
