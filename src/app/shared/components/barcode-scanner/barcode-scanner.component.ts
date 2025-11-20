@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, AfterViewInit, output, ViewChild } from '@angular/core';
 import { ZXingScannerComponent, ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
 
@@ -10,7 +10,7 @@ import { BarcodeFormat } from '@zxing/library';
   styleUrl: './barcode-scanner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BarcodeScannerComponent implements OnInit {
+export class BarcodeScannerComponent implements AfterViewInit {
   @ViewChild('scanner', { static: false })
   scanner!: ZXingScannerComponent;
 
@@ -18,23 +18,39 @@ export class BarcodeScannerComponent implements OnInit {
 
   readonly BarcodeFormat = BarcodeFormat;
   formats: BarcodeFormat[] = [
+    BarcodeFormat.AZTEC,
+    BarcodeFormat.CODABAR,
+    BarcodeFormat.CODE_39,
+    BarcodeFormat.CODE_93,
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.DATA_MATRIX,
     BarcodeFormat.EAN_13,
     BarcodeFormat.EAN_8,
+    BarcodeFormat.ITF,
+    BarcodeFormat.MAXICODE,
+    BarcodeFormat.PDF_417,
+    BarcodeFormat.RSS_14,
+    BarcodeFormat.UPC_E,
     BarcodeFormat.UPC_A,
+    BarcodeFormat.UPC_EAN_EXTENSION,
     BarcodeFormat.QR_CODE
   ];
 
-  ngOnInit(): void {
-    this.scanner.camerasFound.subscribe((devices) => {
-      this.currentDevice = devices[0];
-    });
+  emitScanResult = output<string | number>();
+
+  ngAfterViewInit(): void {
+    if (this.scanner) {
+      this.scanner.camerasFound.subscribe((devices) => {
+        this.currentDevice = devices?.[0];
+      });
+    }
   }
 
-  scanCompleteHandler(result: any): void {
-    console.log('Scan Complete:', result);
+  scanErrorHandler(error: any): void {
+    console.error('Scan Error:', error);
   }
 
   scanSuccessHandler(result: any): void {
-    console.log('Scan Success:', result);
+    this.emitScanResult.emit(result);
   }
 }

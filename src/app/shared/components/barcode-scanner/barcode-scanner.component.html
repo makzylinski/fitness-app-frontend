@@ -1,5 +1,6 @@
 <zxing-scanner 
-#scanner
-[formats]="formats"
-[device]="currentDevice" 
-(scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+    #scanner 
+    [formats]="formats" 
+    [device]="currentDevice" 
+    (scanSuccess)="scanSuccessHandler($event)"
+    (scanError)="scanErrorHandler($event)"></zxing-scanner>

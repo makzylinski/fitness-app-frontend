@@ -12,6 +12,6 @@ export class FoodService {
 
     getProductByBarcode = (barcode: string) =>{
         const url = `${this.foodUrl}${barcode}.json`;
-        return this.http.get(url);
+        return this.http.get(url, { headers: { Authorization: "Basic " + btoa("off:off") } });
     }
 }
