@@ -1,9 +1,9 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { env } from '../environments/env';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const modified = req.clone({
-    withCredentials: true,
-  });
+  const isAbsoluteHttpUrl = /^https?:\/\//i.test(req.url);
+  const isOurApi = (!isAbsoluteHttpUrl) || req.url.startsWith(env.baseUrl);
 
-  return next(modified);
+  return next(isOurApi ? req.clone({ withCredentials: true }) : req);
 };
