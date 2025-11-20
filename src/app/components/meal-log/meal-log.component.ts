@@ -14,17 +14,24 @@ import { FoodService } from '../../services/food.service';
 })
 export class MealLogComponent {
   mealLogForm: FormGroup;
-  isButtonClicked: boolean = false;
   mealList = [{
+    idx: 0,
+    isListOpen: false,
     name: 'Breakfast',
   },
   {
+    idx: 1,
+    isListOpen: false,
     name: 'Lunch',
   },
   {
+    idx: 2,
+    isListOpen: false,
     name: 'Dinner',
   },
   {
+    idx: 3,
+    isListOpen: false,
     name: 'Snacks',
   }];
 
@@ -73,5 +80,5 @@ export class MealLogComponent {
     });
   };
 
-  onHeaderClick = (): boolean => this.isButtonClicked = !this.isButtonClicked;
+  onHeaderClick = (meal: any): boolean => this.mealList[meal.idx].isListOpen = !this.mealList[meal.idx].isListOpen;
 }

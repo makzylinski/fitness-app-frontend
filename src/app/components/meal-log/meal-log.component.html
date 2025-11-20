@@ -11,21 +11,22 @@
     <form class="meal-log__content" [formGroup]="mealLogForm">
         @for (meal of mealList; track $index) {
         <div class="meal-log__meal">
-            <div class="meal-log__meal--header" (click)="onHeaderClick()">
+            <div class="meal-log__meal--header" (click)="onHeaderClick(meal)">
                 <h2>{{ meal.name }}</h2>
-                <img src="assets/icons/Arrow-down.svg" class="arrow_down" [class.rotated]="isButtonClicked"
+                <img src="assets/icons/Arrow-down.svg" class="arrow_down" [class.rotated]="meal.isListOpen"
                     alt="arrow_down" />
             </div>
+            @if (meal.isListOpen) {
             <div class="meal-log__meal--actions">
                 <app-input></app-input>
                 <img src="assets/icons/photo-camera.svg" class="photo-camera" alt="photo_camera" />
-
             </div>
+            }
         </div>
         }
     </form>
 
-    <app-barcode-scanner (emitScanResult)="scannedProductId($event)"></app-barcode-scanner>
+    <!-- <app-barcode-scanner (emitScanResult)="scannedProductId($event)"></app-barcode-scanner> -->
 
     @if (product) {
     <div class="product-summary">
