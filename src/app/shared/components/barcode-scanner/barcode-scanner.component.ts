@@ -1,5 +1,6 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ZXingScannerComponent, ZXingScannerModule } from '@zxing/ngx-scanner';
+import { BarcodeFormat } from '@zxing/library';
 
 @Component({
   selector: 'app-barcode-scanner',
@@ -9,7 +10,26 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
   styleUrl: './barcode-scanner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BarcodeScannerComponent {
+export class BarcodeScannerComponent implements OnInit {
+  @ViewChild('scanner', { static: false })
+  scanner!: ZXingScannerComponent;
+
+  currentDevice: MediaDeviceInfo | undefined = undefined;
+
+  readonly BarcodeFormat = BarcodeFormat;
+  formats: BarcodeFormat[] = [
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.EAN_8,
+    BarcodeFormat.UPC_A,
+    BarcodeFormat.QR_CODE
+  ];
+
+  ngOnInit(): void {
+    this.scanner.camerasFound.subscribe((devices) => {
+      this.currentDevice = devices[0];
+    });
+  }
+
   scanCompleteHandler(result: any): void {
     console.log('Scan Complete:', result);
   }
@@ -17,20 +37,4 @@ export class BarcodeScannerComponent {
   scanSuccessHandler(result: any): void {
     console.log('Scan Success:', result);
   }
-
-
-  // @ViewChild('videoElement') videoElement!: any;
-
-  // ngAfterViewInit(): void {
-  //   const video = this.videoElement.nativeElement as HTMLVideoElement;
-  //   if (navigator.mediaDevices.getUserMedia) {
-  //     navigator.mediaDevices.getUserMedia({ video: true })
-  //       .then(function (stream) {
-  //         video.srcObject = stream;
-  //       })
-  //       .catch(function (err) {
-  //         console.log("Something went wrong!");
-  //       });
-  //   }
-  // }
 }

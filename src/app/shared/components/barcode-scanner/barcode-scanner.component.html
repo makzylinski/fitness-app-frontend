@@ -1,5 +1,5 @@
-<!-- <video autoplay="true" id="videoElement" #videoElement></video> -->
-
-<zxing-scanner
- (scanComplete)="scanCompleteHandler($event)"
- (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+<zxing-scanner 
+#scanner
+[formats]="formats"
+[device]="currentDevice" 
+(scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
