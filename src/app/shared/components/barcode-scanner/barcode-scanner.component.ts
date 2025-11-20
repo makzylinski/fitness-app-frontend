@@ -18,9 +18,21 @@ export class BarcodeScannerComponent implements AfterViewInit {
 
   readonly BarcodeFormat = BarcodeFormat;
   formats: BarcodeFormat[] = [
+    BarcodeFormat.AZTEC,
+    BarcodeFormat.CODABAR,
+    BarcodeFormat.CODE_39,
+    BarcodeFormat.CODE_93,
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.DATA_MATRIX,
     BarcodeFormat.EAN_13,
     BarcodeFormat.EAN_8,
+    BarcodeFormat.ITF,
+    BarcodeFormat.MAXICODE,
+    BarcodeFormat.PDF_417,
+    BarcodeFormat.RSS_14,
+    BarcodeFormat.UPC_E,
     BarcodeFormat.UPC_A,
+    BarcodeFormat.UPC_EAN_EXTENSION,
     BarcodeFormat.QR_CODE
   ];
 
