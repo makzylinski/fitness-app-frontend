@@ -25,5 +25,5 @@
         }
     </form>
 
-    <app-barcode-scanner></app-barcode-scanner>
+    <app-barcode-scanner (emitScanResult)="scannedProductId($event)"></app-barcode-scanner>
 </div>

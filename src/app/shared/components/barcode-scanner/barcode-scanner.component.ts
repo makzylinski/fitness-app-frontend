@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, output, ViewChild } from '@angular/core';
 import { ZXingScannerComponent, ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
 
@@ -24,14 +24,12 @@ export class BarcodeScannerComponent implements OnInit {
     BarcodeFormat.QR_CODE
   ];
 
+  emitScanResult = output<string | number>();
+
   ngOnInit(): void {
     this.scanner.camerasFound.subscribe((devices) => {
       this.currentDevice = devices[0];
     });
-  }
-
-  scanCompleteHandler(result: any): void {
-    console.log('Scan Complete:', result);
   }
 
   scanErrorHandler(error: any): void {
@@ -39,6 +37,6 @@ export class BarcodeScannerComponent implements OnInit {
   }
 
   scanSuccessHandler(result: any): void {
-    console.log('Scan Success:', result);
+    this.emitScanResult.emit(result);
   }
 }

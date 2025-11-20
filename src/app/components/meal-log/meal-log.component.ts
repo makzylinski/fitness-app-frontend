@@ -43,5 +43,9 @@ export class MealLogComponent {
       .then((json) => console.log(json));
   }
 
+  scannedProductId = (productId: string | number) => {
+    console.log('Scanned Product ID:', productId);
+  };
+
   onHeaderClick = (): boolean => this.isButtonClicked = !this.isButtonClicked;
 }
