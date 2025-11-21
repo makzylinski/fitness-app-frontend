@@ -8,13 +8,7 @@
     (click)="toggleOpen()"
     [class.disabled]="disabled"
   >
-    <div class="select__dropdown--selected">
-      {{
-        disabled
-          ? exercise?.typeName || exercise || "No selection"
-          : exercise?.typeName || "Select option"
-      }}
-    </div>
+    <div class="select__dropdown--selected">{{ getSelectedText() }}</div>
     <img
       src="assets/icons/Arrow-down.svg"
       alt="arrow_down"
@@ -29,15 +23,10 @@
     </div>
     @for (option of (filteredOptions | async); track $index) {
     <div class="select__options--single" (click)="setSelectedOption(option)">
-      <img
-        [src]="
-          option.typeOfWorkout === TypeOfWorkout.CARDIO
-            ? 'assets/icons/cardio.svg'
-            : 'assets/icons/weight-lifting-icon.svg'
-        "
-        [alt]="option.typeName"
-      />
-      <div>{{ option.typeName }}</div>
+      @if (iconFor && iconFor(option)) {
+        <img [src]="iconFor(option)!" [alt]="getLabel(option)" />
+      }
+      <div>{{ getLabel(option) }}</div>
     </div>
     }
   </div>

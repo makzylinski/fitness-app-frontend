@@ -5,6 +5,7 @@ import { ExerciseSet, WorkoutType } from '../../../models/exercise.model';
 import { WorkoutsService } from '../../../services/workouts.service';
 import { InputComponent } from '../../../shared/components/input/input.component';
 import { SelectComponent } from '../../../shared/components/select/select.component';
+import { TypeOfWorkout } from '../../../shared/model/type-of-workout';
 
 @Component({
   selector: 'app-add-exercise',
@@ -23,6 +24,12 @@ export class AddExerciseComponent implements OnInit {
   currentReps: number | string = 0;
   currentWeight: number | string = 0;
   currentExercise!: WorkoutType;
+
+  displayWorkout = (o: WorkoutType) => o?.typeName ?? '';
+  workoutIcon = (o: WorkoutType) =>
+    o?.typeOfWorkout === TypeOfWorkout.CARDIO
+      ? 'assets/icons/cardio.svg'
+      : 'assets/icons/weight-lifting-icon.svg';
 
   ngOnInit(): void {
     this.options = this.workoutService.getWorkoutTypes();

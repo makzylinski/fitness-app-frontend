@@ -6,13 +6,14 @@ import {
   ElementRef,
   HostListener,
   Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
+  SimpleChanges,
   output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { WorkoutType } from '../../../models/exercise.model';
-import { TypeOfWorkout } from '../../model/type-of-workout';
+import { BehaviorSubject, Observable, Subject, isObservable, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-select',
@@ -22,17 +23,24 @@ import { TypeOfWorkout } from '../../model/type-of-workout';
   styleUrl: './select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent implements OnChanges, OnInit, OnDestroy {
   @Input() showLabel?: boolean = false;
   @Input() label: string = '';
-  @Input() options!: Observable<WorkoutType[]>;
+  @Input() options?: Observable<any[]> | any[];
   @Input() id: string = '';
   @Input() name: string = '';
   @Input() width: number = 307;
   @Input() disabled: boolean = false;
-  @Input() exercise?: WorkoutType;
+  @Input() exercise?: any;
+  @Input() selected?: any;
 
-  onSelect = output<WorkoutType>();
+  @Input() displayWith?: (option: any) => string;
+  @Input() searchWith?: (option: any, term: string) => boolean;
+  @Input() iconFor?: (option: any) => string | null | undefined;
+  @Input() placeholder: string = 'Select option';
+  @Input() noSelectionLabel: string = 'No selection';
+
+  onSelect = output<any>();
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
@@ -41,20 +49,31 @@ export class SelectComponent implements OnInit {
     }
   }
 
-  TypeOfWorkout = TypeOfWorkout;
-
   constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
-  selectedOption?: WorkoutType;
+  selectedOption?: any;
   isDropdownOpen: boolean = false;
-  filteredOptions = new BehaviorSubject<WorkoutType[]>([]);
-  private allOptions: WorkoutType[] = [];
+  filteredOptions = new BehaviorSubject<any[]>([]);
+  private allOptions: any[] = [];
+  private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
-    this.options.subscribe((data: WorkoutType[]) => {
-      this.allOptions = data || [];
-      this.filteredOptions.next(this.allOptions);
-    });
+    this.initOptionsStream();
+    this.initSelectedFromInputs();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['options'] && !changes['options'].firstChange) {
+      this.initOptionsStream();
+    }
+    if ((changes['selected'] || changes['exercise']) && !changes['selected']?.firstChange && !changes['exercise']?.firstChange) {
+      this.initSelectedFromInputs();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggleOpen = (): boolean => {
@@ -62,7 +81,7 @@ export class SelectComponent implements OnInit {
     return (this.isDropdownOpen = !this.isDropdownOpen);
   };
 
-  setSelectedOption = (option: WorkoutType): void => {
+  setSelectedOption = (option: any): void => {
     this.selectedOption = option;
     this.isDropdownOpen = false;
     console.log(this.selectedOption);
@@ -75,12 +94,59 @@ export class SelectComponent implements OnInit {
     if (!searchValue) {
       this.filteredOptions.next(this.allOptions);
     } else {
-      const filtered = this.allOptions.filter((el) =>
-        el?.typeName?.toLowerCase().includes(searchValue)
-      );
+      const filtered = this.allOptions.filter((el) => {
+        if (this.searchWith) {
+          return !!this.searchWith(el, searchValue);
+        }
+        const label = this.getLabel(el).toLowerCase();
+        return label.includes(searchValue);
+      });
       this.filteredOptions.next(filtered);
     }
 
     this.cdr.markForCheck();
   };
+
+  getLabel = (option: any): string => {
+    if (this.displayWith) return this.displayWith(option) ?? '';
+    if (option == null) return '';
+    if (typeof option === 'string' || typeof option === 'number') return String(option);
+
+    const maybe = (option as any)?.typeName ?? (option as any)?.name ?? (option as any)?.label;
+    return maybe ? String(maybe) : '';
+  };
+
+  getSelectedText = (): string => {
+    const label = this.selectedOption ? this.getLabel(this.selectedOption) : '';
+    if (this.disabled) return label || this.noSelectionLabel;
+    return label || this.placeholder;
+  };
+
+  private initOptionsStream(): void {
+    if (!this.options) {
+      this.allOptions = [];
+      this.filteredOptions.next([]);
+      this.cdr.markForCheck();
+      return;
+    }
+
+    if (isObservable(this.options)) {
+      (this.options as Observable<any[]>)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((data: any[]) => {
+          this.allOptions = data || [];
+          this.filteredOptions.next(this.allOptions);
+          this.cdr.markForCheck();
+        });
+    } else if (Array.isArray(this.options)) {
+      this.allOptions = this.options || [];
+      this.filteredOptions.next(this.allOptions);
+      this.cdr.markForCheck();
+    }
+  }
+
+  private initSelectedFromInputs(): void {
+    this.selectedOption = this.selected ?? this.exercise;
+    this.cdr.markForCheck();
+  }
 }
