@@ -1,4 +1,5 @@
 .meal-log {
+    display: inline-block;
     width: 400px;
     margin: 20px 140px;
 
@@ -58,4 +59,16 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
+}
+
+.add-meal {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.scanner {
+    display: inline-block;
+    height: 150px;
+    width: 400px;
 }

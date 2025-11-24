@@ -19,14 +19,28 @@
             @if (meal.isListOpen) {
             <div class="meal-log__meal--actions">
                 <app-select></app-select>
-                <img src="assets/icons/photo-camera.svg" class="photo-camera" alt="photo_camera" />
+                <img 
+                (click)="onScanClick()"
+                src="assets/icons/photo-camera.svg" 
+                class="photo-camera" 
+                alt="photo_camera" />
+
+                <img 
+                src="assets/icons/plus.svg" 
+                (click)="onAddMeal(meal)" 
+                class="add-meal" 
+                alt="add_meal" />
             </div>
             }
         </div>
         }
     </form>
+</div>
 
-    <!-- <app-barcode-scanner (emitScanResult)="scannedProductId($event)"></app-barcode-scanner> -->
+<div class="scanner">
+     @if (scannerVisible) {
+    <app-barcode-scanner (emitScanResult)="scannedProductId($event)"></app-barcode-scanner>
+    }
 
     @if (product) {
     <div class="product-summary">

@@ -14,6 +14,7 @@ import { SelectComponent } from "../../shared/components/select/select.component
 })
 export class MealLogComponent {
   mealLogForm: FormGroup;
+  scannerVisible: boolean = false;
   mealList = [{
     idx: 0,
     isListOpen: false,
@@ -81,4 +82,8 @@ export class MealLogComponent {
   };
 
   onHeaderClick = (meal: any): boolean => this.mealList[meal.idx].isListOpen = !this.mealList[meal.idx].isListOpen;
+
+  onScanClick = (): boolean => this.scannerVisible = !this.scannerVisible;
+
+  onAddMeal = (meal: any): void => console.log(meal);
 }
