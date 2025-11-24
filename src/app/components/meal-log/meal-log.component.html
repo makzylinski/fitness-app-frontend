@@ -20,8 +20,13 @@
             <ng-container *ngTemplateOutlet="mealInput; context: { meal: meal }"></ng-container>
 
             @for (mealItem of meal.mealList; track $index) {
-
-            <ng-container *ngTemplateOutlet="mealInput; context: { meal: meal }"></ng-container>
+            <div class="meal-log__meal--item">
+                <div class="meal-log__meal--name">{{ mealItem.name }}</div>
+                <p>{{ mealItem.nutritionInfo.kcal }} kcal</p>
+                <p>Protein: {{ mealItem.nutritionInfo.protein }} g</p>
+                <p>Fats: {{ mealItem.nutritionInfo.fats }} g</p>
+                <p>Carbs: {{ mealItem.nutritionInfo.carbs }} g</p>
+            </div>
             }
             }
         </div>
