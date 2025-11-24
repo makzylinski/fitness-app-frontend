@@ -19,21 +19,25 @@ export class MealLogComponent {
     idx: 0,
     isListOpen: false,
     name: 'Breakfast',
+    mealList: []
   },
   {
     idx: 1,
     isListOpen: false,
     name: 'Lunch',
+    mealList: []
   },
   {
     idx: 2,
     isListOpen: false,
     name: 'Dinner',
+    mealList: []
   },
   {
     idx: 3,
     isListOpen: false,
     name: 'Snacks',
+    mealList: []
   }];
 
   product: {

@@ -17,20 +17,15 @@
                     alt="arrow_down" />
             </div>
             @if (meal.isListOpen) {
+            @for (mealItem of meal.mealList; track $index) {
             <div class="meal-log__meal--actions">
                 <app-select></app-select>
-                <img 
-                (click)="onScanClick()"
-                src="assets/icons/photo-camera.svg" 
-                class="photo-camera" 
-                alt="photo_camera" />
+                <img (click)="onScanClick()" src="assets/icons/photo-camera.svg" class="photo-camera"
+                    alt="photo_camera" />
 
-                <img 
-                src="assets/icons/plus.svg" 
-                (click)="onAddMeal(meal)" 
-                class="add-meal" 
-                alt="add_meal" />
+                <img src="assets/icons/plus.svg" (click)="onAddMeal(meal)" class="add-meal" alt="add_meal" />
             </div>
+            }
             }
         </div>
         }
@@ -38,7 +33,7 @@
 </div>
 
 <div class="scanner">
-     @if (scannerVisible) {
+    @if (scannerVisible) {
     <app-barcode-scanner (emitScanResult)="scannedProductId($event)"></app-barcode-scanner>
     }
 
