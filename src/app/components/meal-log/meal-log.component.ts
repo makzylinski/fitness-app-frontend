@@ -98,6 +98,6 @@ export class MealLogComponent {
 
   onAddMeal = (meal: Meal): void => {
     console.log(meal);
-    this.mealList[meal.idx].mealList.push({name: 'test'});
+    this.mealList[meal.idx].mealList.push({name: 'test', nutritionInfo: {kcal: 100, protein: 10, fats: 30, carbs: 20}});
   };
 }
