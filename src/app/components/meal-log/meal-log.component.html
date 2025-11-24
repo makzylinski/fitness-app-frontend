@@ -17,14 +17,11 @@
                     alt="arrow_down" />
             </div>
             @if (meal.isListOpen) {
-            @for (mealItem of meal.mealList; track $index) {
-            <div class="meal-log__meal--actions">
-                <app-select></app-select>
-                <img (click)="onScanClick()" src="assets/icons/photo-camera.svg" class="photo-camera"
-                    alt="photo_camera" />
+            <ng-container *ngTemplateOutlet="mealInput; context: { meal: meal }"></ng-container>
 
-                <img src="assets/icons/plus.svg" (click)="onAddMeal(meal)" class="add-meal" alt="add_meal" />
-            </div>
+            @for (mealItem of meal.mealList; track $index) {
+
+            <ng-container *ngTemplateOutlet="mealInput; context: { meal: meal }"></ng-container>
             }
             }
         </div>
@@ -51,3 +48,12 @@
     </div>
     }
 </div>
+
+<ng-template #mealInput let-meal="meal">
+    <div class="meal-log__meal--actions">
+        <app-select></app-select>
+        <img (click)="onScanClick()" src="assets/icons/photo-camera.svg" class="photo-camera" alt="photo_camera" />
+
+        <img src="assets/icons/plus.svg" (click)="onAddMeal(meal)" class="add-meal" alt="add_meal" />
+    </div>
+</ng-template>

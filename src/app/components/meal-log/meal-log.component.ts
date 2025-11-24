@@ -3,11 +3,17 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { BarcodeScannerComponent } from "../../shared/components/barcode-scanner/barcode-scanner.component";
 import { FoodService } from '../../services/food.service';
 import { SelectComponent } from "../../shared/components/select/select.component";
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-meal-log',
   standalone: true,
-  imports: [ReactiveFormsModule, BarcodeScannerComponent, SelectComponent],
+  imports: [
+    ReactiveFormsModule, 
+    BarcodeScannerComponent, 
+    SelectComponent, 
+    NgTemplateOutlet
+  ],
   templateUrl: './meal-log.component.html',
   styleUrl: './meal-log.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
