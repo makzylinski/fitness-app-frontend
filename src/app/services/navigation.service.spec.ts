@@ -34,4 +34,16 @@ describe('NavigationService', () => {
         expect(routerSpy.navigate).toHaveBeenCalledOnceWith(['/login']);
         await expectAsync(result).toBeResolvedTo(true);
     });
+
+    it('should navigate to signup', async () => {
+        const routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
+        routerSpy.navigate.and.returnValue(Promise.resolve(true) as any);
+
+        const service = new NavigationService(routerSpy as unknown as Router);
+
+        const result = service.navigateToSignUp();
+
+        expect(routerSpy.navigate).toHaveBeenCalledOnceWith(['/signup']);
+        await expectAsync(result).toBeResolvedTo(true);
+    });
 });
