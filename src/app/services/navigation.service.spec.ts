@@ -71,7 +71,7 @@ describe('NavigationService', () => {
         await expectAsync(result).toBeResolvedTo(true);
     });
 
-     it('should navigate to workout-history', async () => {
+    it('should navigate to workout-history', async () => {
         const routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
         routerSpy.navigate.and.returnValue(Promise.resolve(true) as any);
 
@@ -80,6 +80,18 @@ describe('NavigationService', () => {
         const result = service.navigateToWorkoutHistory();
 
         expect(routerSpy.navigate).toHaveBeenCalledOnceWith(['/workout-history']);
+        await expectAsync(result).toBeResolvedTo(true);
+    });
+
+    it('should navigate to meal-log', async () => {
+        const routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
+        routerSpy.navigate.and.returnValue(Promise.resolve(true) as any);
+
+        const service = new NavigationService(routerSpy as unknown as Router);
+
+        const result = service.navigateToMealLog();
+
+        expect(routerSpy.navigate).toHaveBeenCalledOnceWith(['/meal-log']);
         await expectAsync(result).toBeResolvedTo(true);
     });
 });
