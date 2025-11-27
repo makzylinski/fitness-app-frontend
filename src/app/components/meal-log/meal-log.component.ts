@@ -67,6 +67,14 @@ export class MealLogComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+
+    this.foodService.searchProducts('coke').subscribe((data) => {
+      console.log('Search Products Data:', data);
+    });
+
+    this.foodService.searchProduct2('chocolate').subscribe((data) => {
+      console.log('Search Products Data (chocolate):', data);
+    });
   }
 
   scannedProductId = (productId: string | number) => {
