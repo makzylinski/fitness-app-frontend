@@ -46,4 +46,16 @@ describe('NavigationService', () => {
         expect(routerSpy.navigate).toHaveBeenCalledOnceWith(['/signup']);
         await expectAsync(result).toBeResolvedTo(true);
     });
+
+    it('should navigate to dashboard', async () => {
+        const routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
+        routerSpy.navigate.and.returnValue(Promise.resolve(true) as any);
+
+        const service = new NavigationService(routerSpy as unknown as Router);
+
+        const result = service.navigateToDashboard();
+
+        expect(routerSpy.navigate).toHaveBeenCalledOnceWith(['/dashboard']);
+        await expectAsync(result).toBeResolvedTo(true);
+    });
 });
